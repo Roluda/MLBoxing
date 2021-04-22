@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MLBoxing.Character {
     public class RagdollController : MonoBehaviour {
+        [Header("Joints")]
         [SerializeField]
         ConfigurableJoint neck = default;
         [SerializeField]
@@ -47,8 +49,28 @@ namespace MLBoxing.Character {
         public float rightHipY { get; set; }
         public float rightKneeX { get; set; }
 
+        public IEnumerable<ConfigurableJoint> allJoints {
+            get {
+                yield return neck;
+                yield return chest;
+                yield return leftShoulder;
+                yield return leftElbow;
+                yield return rightShoulder;
+                yield return rightElbow;
+                yield return leftHip;
+                yield return leftKnee;
+                yield return rightHip;
+                yield return rightKnee;
+            }
+        }
+
+
         // Update is called once per frame
         void FixedUpdate() {
+            SetAllTargetRotations();
+        }
+
+        void SetAllTargetRotations() {
             SetTargetRotation(neck, neckX, neckY);
             SetTargetRotation(chest, chestX, chestY);
 
@@ -59,7 +81,7 @@ namespace MLBoxing.Character {
             SetTargetRotation(rightElbow, rightElbowX, 0);
 
             SetTargetRotation(leftHip, leftHipX, leftHipY);
-            SetTargetRotation(leftKnee, leftKneeX,0);
+            SetTargetRotation(leftKnee, leftKneeX, 0);
 
             SetTargetRotation(rightHip, rightHipX, rightHipY);
             SetTargetRotation(rightKnee, rightKneeX, 0);
@@ -74,7 +96,6 @@ namespace MLBoxing.Character {
             float maxY = joint.angularYLimit.limit;
             float targetX = minX + normalizedX * (maxX - minX);
             float targetY = minY + normalizedY * (maxY - minY);
-            Debug.Log($"SettingRotationFor{joint} with X={targetX} and Y={targetY}");
             joint.targetRotation = Quaternion.Euler(targetX, targetY, 0);
         }
     }

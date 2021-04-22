@@ -1,11 +1,18 @@
 using MLBoxing.Character;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MLBoxing.UI {
     public class RagdollManipulator : MonoBehaviour {
+        enum Mode {
+            Read,
+            Write
+        }
+        [SerializeField]
+        Mode mode = Mode.Write;
+
         [SerializeField]
         RagdollController observedRagdoll = default;
+
         [SerializeField]
         LabeledSlider neckX = default;
         [SerializeField]
@@ -61,7 +68,33 @@ namespace MLBoxing.UI {
         // Update is called once per frame
         void Update() {
             CheckMouseInput();
-            SetRagdollValues();
+            if (mode == Mode.Write) {
+                SetRagdollValues();
+            } else {
+                SetSliderValues();
+            }
+        }
+
+        void SetSliderValues() {
+            if (!observedRagdoll) {
+                return;
+            }
+            neckX.value = observedRagdoll.neckX;
+            neckY.value = observedRagdoll.neckY;
+            chestX.value = observedRagdoll.chestX;
+            chestY.value = observedRagdoll.chestY;
+            leftShoulderX.value = observedRagdoll.leftShoulderX;
+            leftShoulderY.value = observedRagdoll.leftShoulderY;
+            leftElbowX.value = observedRagdoll.leftElbowX;
+            rightShoulderX.value = observedRagdoll.rightShoulderX;
+            rightShoulderY.value = observedRagdoll.rightShoulderY;
+            rightElbowX.value = observedRagdoll.rightElbowX;
+            leftHipX.value = observedRagdoll.leftHipX;
+            leftHipY.value = observedRagdoll.leftHipY;
+            leftKneeX.value = observedRagdoll.leftKneeX;
+            rightHipX.value = observedRagdoll.rightHipX;
+            rightHipY.value = observedRagdoll.rightHipY;
+            rightKneeX.value = observedRagdoll.rightKneeX;
         }
 
         void SetRagdollValues() {
@@ -94,7 +127,6 @@ namespace MLBoxing.UI {
                         observedRagdoll = controller;
                     }
                 }
-
             }
         }
     }
