@@ -64,10 +64,45 @@ namespace MLBoxing.Character {
             }
         }
 
+        Dictionary<ConfigurableJoint, Quaternion> startRotations = new Dictionary<ConfigurableJoint, Quaternion>();
 
-        // Update is called once per frame
+        private void Awake() {
+            CacheStartRotations();
+            SetInitialValues();
+        }
+
+        private void CacheStartRotations() {
+            foreach(var joint in allJoints) {
+                startRotations[joint] = joint.transform.rotation;
+            }
+        }
+
         void FixedUpdate() {
             SetAllTargetRotations();
+        }
+
+        private void SetInitialValues() {
+            neckX = GetNormalizedJointRotationX(neck);
+            neckY = GetNormalizedJointRotationY(neck);
+
+            chestX = GetNormalizedJointRotationX(chest);
+            chestY = GetNormalizedJointRotationY(chest);
+
+            leftShoulderX = GetNormalizedJointRotationX(leftShoulder);
+            leftShoulderY = GetNormalizedJointRotationY(leftShoulder);
+            leftElbowX = GetNormalizedJointRotationX(leftElbow);
+
+            rightShoulderX = GetNormalizedJointRotationX(rightShoulder);
+            rightShoulderY = GetNormalizedJointRotationY(rightShoulder);
+            rightElbowX = GetNormalizedJointRotationX(rightElbow);
+
+            leftHipX = GetNormalizedJointRotationX(leftHip);
+            leftHipY = GetNormalizedJointRotationY(leftHip);
+            leftKneeX = GetNormalizedJointRotationX(leftKnee);
+
+            rightHipX = GetNormalizedJointRotationX(rightHip);
+            rightHipY = GetNormalizedJointRotationY(rightHip);
+            rightKneeX = GetNormalizedJointRotationX(rightKnee);
         }
 
         void SetAllTargetRotations() {
@@ -97,6 +132,28 @@ namespace MLBoxing.Character {
             float targetX = minX + normalizedX * (maxX - minX);
             float targetY = minY + normalizedY * (maxY - minY);
             joint.targetRotation = Quaternion.Euler(targetX, targetY, 0);
+        }
+
+
+        public float GetNormalizedJointRotationX(ConfigurableJoint joint) {
+            float min = joint.lowAngularXLimit.limit;
+            float max = joint.highAngularXLimit.limit;
+            float current = joint.GetJointRotation(startRotations[joint]).eulerAngles.x;
+            return (current - min) / (max - min);
+        }
+
+        public float GetNormalizedJointRotationY(ConfigurableJoint joint) {
+            float min = joint.angularYLimit.limit;
+            float max = -joint.angularYLimit.limit;
+            float current = joint.GetJointRotation(startRotations[joint]).eulerAngles.y;
+            return (current - min) / (max - min);
+        }
+
+        public Quaternion GetJointRotation(ConfigurableJoint joint) {
+            var right = joint.axis;
+            var forward = Vector3.Cross(joint.axis, joint.secondaryAxis).normalized;
+            var up = Vector3.Cross(forward, right).normalized;
+            return Quaternion.FromToRotation(up, joint.connectedBody.transform.rotation.eulerAngles);
         }
     }
 }

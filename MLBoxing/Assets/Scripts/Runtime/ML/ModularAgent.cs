@@ -9,7 +9,6 @@ using UnityEngine;
 namespace MLBoxing.ML {
     public class ModularAgent : Agent {
         public Action<ModularAgent> onInitialize;
-        public Action<ModularAgent> onEpisodeStep;
         public Action<ModularAgent> onTerminated;
         public Action<ModularAgent> onFixedUpdate;
         public Action<ModularAgent> onOpponentChanged;
@@ -57,11 +56,6 @@ namespace MLBoxing.ML {
         public void Terminate() {
             onTerminated?.Invoke(this);
             Kill();
-        }
-
-        public override void OnActionReceived(ActionBuffers actions) {
-            base.OnActionReceived(actions);
-            onEpisodeStep?.Invoke(this);
         }
 
         void FixedUpdate() {

@@ -49,5 +49,26 @@ namespace MLBoxing.Character {
 			// Set target rotation to our newly calculated rotation
 			joint.targetRotation = resultRotation;
 		}
+
+		public static Quaternion GetJointRotation(this ConfigurableJoint joint, Quaternion startRotation) {
+			// Calculate the rotation expressed by the joint's axis and secondary axis
+			var right = joint.axis;
+			var forward = Vector3.Cross(joint.axis, joint.secondaryAxis).normalized;
+			var up = Vector3.Cross(forward, right).normalized;
+			Quaternion worldToJointSpace = Quaternion.LookRotation(forward, up);
+
+			// Transform into world space
+			Quaternion resultRotation = Quaternion.Inverse(worldToJointSpace);
+
+			// Counter-rotate and apply the new local rotation.
+			// Joint space is the inverse of world space, so we need to invert our value
+			resultRotation *= startRotation * Quaternion.Inverse(joint.transform.rotation);
+
+			// Transform back into joint space
+			resultRotation *= worldToJointSpace;
+
+			// Return calculated Rotation
+			return resultRotation;
+		}
 	}
 }

@@ -41,29 +41,11 @@ namespace MLBoxing.ML {
 
         public IEnumerable<float> GetAllCurrentJointRotationsNormalized() {
             foreach(var joint in ragdoll.allJoints) {
-                yield return GetNormalizedJointRotationX(joint);
+                yield return ragdoll.GetNormalizedJointRotationX(joint);
                 if(joint.angularYLimit.limit > 0) {
-                    yield return GetNormalizedJointRotationY(joint);
+                    yield return ragdoll.GetNormalizedJointRotationY(joint);
                 }
             }
-        }
-
-        float GetNormalizedJointRotationX(ConfigurableJoint joint) {
-            float min = joint.lowAngularXLimit.limit;
-            float max = joint.highAngularXLimit.limit;
-            float current = GetJointRotation(joint).eulerAngles.x;
-            return (current - min) / (max - min);
-        }
-
-        float GetNormalizedJointRotationY(ConfigurableJoint joint) {
-            float min = joint.angularYLimit.limit;
-            float max = -joint.angularYLimit.limit;
-            float current = GetJointRotation(joint).eulerAngles.y;
-            return (current - min) / (max - min);
-        }
-
-        public Quaternion GetJointRotation(ConfigurableJoint joint) {
-            return Quaternion.FromToRotation(joint.axis, joint.connectedBody.transform.rotation.eulerAngles);
         }
 
         public static int[] GetShape(RagdollController ragdoll) {

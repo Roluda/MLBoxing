@@ -8,7 +8,7 @@ namespace MLBoxing.ML {
 
         public override void AddRewardListeners(ModularAgent agent) {
             if (existentialReward != 0) {
-                agent.onEpisodeStep += AddExistentialReward;
+                agent.onFixedUpdate += AddExistentialReward;
             }
         }
 

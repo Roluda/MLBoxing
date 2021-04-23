@@ -31,11 +31,11 @@ namespace MLBoxing.ML {
         public int Write(ObservationWriter writer) {
             int observations = 0;
             foreach(var limb in character.allLimbs) {
-                observations += 3;
                 var localPosition = limb.transform.position - character.position;
                 var clampedPosition = Vector3.ClampMagnitude(localPosition, character.height);
                 var normalizedPosition = clampedPosition / character.height;
-                writer.Add(normalizedPosition);
+                writer.Add(normalizedPosition, observations);
+                observations += 3;
             }
             return observations;
         }
@@ -47,7 +47,7 @@ namespace MLBoxing.ML {
         void ISensor.Update() { }
 
         public static int[] GetShape(BoxingCharacter character) {
-            return new int[character.allLimbs.ToList().Count * 3];
+            return new int[] { character.allLimbs.ToList().Count * 3 };
         }
     }
 }

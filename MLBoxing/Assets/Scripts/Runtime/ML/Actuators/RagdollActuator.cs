@@ -5,7 +5,7 @@ using Unity.MLAgents.Actuators;
 using UnityEngine;
 
 namespace MLBoxing.ML {
-    public class RagdollActuator : IActuator, IHeuristicProvider {
+    public class RagdollActuator : IActuator {
 
         const int actions = 16;
 
@@ -42,10 +42,6 @@ namespace MLBoxing.ML {
 
         public static ActionSpec GetActionSpec() {
             return new ActionSpec { NumContinuousActions = actions };
-        }
-
-        public void Heuristic(in ActionBuffers actionBuffersOut) {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -12,8 +12,8 @@ namespace MLBoxing.ML {
 
 
         public override void AddRewardListeners(ModularAgent agent) {
-            agent.onEpisodeStep += CheckHeadAboveReward;
-            agent.onEpisodeStep += AddMultiplicativeHeadHeightReward;
+            agent.onFixedUpdate += CheckHeadAboveReward;
+            agent.onFixedUpdate += AddMultiplicativeHeadHeightReward;
         }
 
         private void AddMultiplicativeHeadHeightReward(ModularAgent agent) {
