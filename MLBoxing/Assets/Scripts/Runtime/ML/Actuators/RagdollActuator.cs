@@ -32,6 +32,7 @@ namespace MLBoxing.ML {
             actuatedRagdoll.leftKneeX = actionBuffers.ContinuousActions[index++];
             actuatedRagdoll.rightHipX = actionBuffers.ContinuousActions[index++];
             actuatedRagdoll.rightHipY = actionBuffers.ContinuousActions[index++];
+            actuatedRagdoll.rightKneeX = actionBuffers.ContinuousActions[index++];
         }
 
         public void ResetData() {
