@@ -205,7 +205,7 @@ MonoBehaviour:
   agentPrefab: {fileID: 228707360901564577, guid: 8c2793e77dc5d3848bf75b4f322e7085, type: 3}
   selfPlay: 0
   rewards:
-  - {fileID: 11400000, guid: bbba74b45f82d3349a53c82e30f1f2eb, type: 2}
+  - {fileID: 11400000, guid: 182f7d73f954d7f438d76d96cf9c3b7a, type: 2}
   terminaters:
   - {fileID: 11400000, guid: 853b3a0b44e7f054c865bbee1e04e185, type: 2}
   possibleSpawnPoints:

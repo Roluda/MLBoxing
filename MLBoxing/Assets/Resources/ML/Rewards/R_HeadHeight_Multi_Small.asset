@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f74092d48fa58c48b95727aea792115, type: 3}
-  m_Name: R_HeadHeight_New
+  m_Name: R_HeadHeight_Multi_Small
   m_EditorClassIdentifier: 
-  headAboveReward: 0.01
+  headAboveReward: 0
   headAboveThreshold: 0.5
-  headHeightMultiplier: 0
+  headHeightMultiplier: 0.02
