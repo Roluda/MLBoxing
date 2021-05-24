@@ -75,6 +75,7 @@ namespace MLBoxing.ML {
                 currentAgents.Add(secondAgent);
                 firstAgent.SetOpponent(secondAgent);
                 secondAgent.SetOpponent(firstAgent);
+                secondAgent.SetTeam(1);
                 secondAgent.enabled = true;
             }
             firstAgent.enabled = true;

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f0049047748d241a527a024f8d6347, type: 3}
   m_Name: T_HeadOnGround_Flat
   m_EditorClassIdentifier: 
-  groundHeight: 0.5
+  groundHeight: 0.7

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Policies;
 using UnityEngine;
 
 namespace MLBoxing.ML {
@@ -18,6 +19,9 @@ namespace MLBoxing.ML {
         public BoxingCharacter character => m_character;
         public ModularAgent opponent => m_opponent;
 
+
+        [SerializeField]
+        BehaviorParameters behaviorParameters = default;
         [SerializeField]
         RagdollController m_controller = default;
         [SerializeField]
@@ -40,6 +44,10 @@ namespace MLBoxing.ML {
             if (dead) {
                 Destroy(gameObject);
             }
+        }
+
+        public void SetTeam(int team) {
+            behaviorParameters.TeamId = team;
         }
 
         /// <summary>
