@@ -18,9 +18,14 @@ namespace MLBoxing.ML {
         [SerializeField]
         List<Terminater> terminaters = default;
         [SerializeField]
+        List<Score> scoreSources = default;
+        [SerializeField]
         Transform[] possibleSpawnPoints = default;
+        [SerializeField]
+        float episodeLength = 0;
 
 
+        int steps = 0;
         List<ModularAgent> currentAgents = new List<ModularAgent>();
         List<Transform> occupiedSpawnPoints = new List<Transform>();
 
@@ -30,6 +35,10 @@ namespace MLBoxing.ML {
 
         void OnDisable() {
             Academy.Instance.OnEnvironmentReset -= ResetArena;
+        }
+
+        private void FixedUpdate() {
+            UpdateEpisodeTime();
         }
 
         public void SetAgentPrefab(ModularAgent agent) {
@@ -44,8 +53,34 @@ namespace MLBoxing.ML {
             this.terminaters = terminaters.ToList();
         }
 
+        public void UpdateEpisodeTime() {
+            if(episodeLength > 0) {
+                steps++;
+                if (steps >= episodeLength) {
+                    EndEpisode();
+                }
+            }
+        }
+
         public void ShutDown() {
             KillCurrentAgents();
+        }
+
+        private void EndEpisode() {
+            if (selfPlay) {
+                DetermineWinner();
+            }
+            ResetArena();
+        }
+
+        private void DetermineWinner() {
+            if (currentAgents[0].score > currentAgents[1].score) {
+                currentAgents[0].Win();
+                currentAgents[1].Lose();
+            }else if (currentAgents[0].score < currentAgents[1].score) {
+                currentAgents[1].Win();
+                currentAgents[0].Lose();
+            }
         }
 
         private void ResetArena() {
@@ -53,6 +88,8 @@ namespace MLBoxing.ML {
             SpawnNewAgents();
             RegisterRewards();
             RegisterTerminaters();
+            RegisterScores();
+            steps = 0;
         }
 
         void KillCurrentAgents() {
@@ -65,16 +102,17 @@ namespace MLBoxing.ML {
             occupiedSpawnPoints.Clear();
             var nextSpawn = NextRandomSpawn();
             var firstAgent = Instantiate(agentPrefab, nextSpawn.position , nextSpawn.rotation, transform);
-            firstAgent.onTerminated += (agent) => ResetArena();
+            firstAgent.onTerminated += (agent) => EndEpisode();
             currentAgents.Add(firstAgent);
             if (selfPlay) {
                 Assert.IsTrue(possibleSpawnPoints.Length > 1, "Not enough Spawn Points for self Play");
                 nextSpawn = NextRandomSpawn();
                 var secondAgent = Instantiate(agentPrefab, nextSpawn.position, nextSpawn.rotation, transform);
-                secondAgent.onTerminated += (agent) => ResetArena();
+                secondAgent.onTerminated += (agent) => EndEpisode();
                 currentAgents.Add(secondAgent);
                 firstAgent.SetOpponent(secondAgent);
                 secondAgent.SetOpponent(firstAgent);
+                firstAgent.SetTeam(0);
                 secondAgent.SetTeam(1);
                 secondAgent.enabled = true;
             }
@@ -87,6 +125,10 @@ namespace MLBoxing.ML {
 
         private void RegisterTerminaters() {
             currentAgents.ForEach(agent => terminaters.ForEach(terminater => terminater.AddTerminationListeners(agent)));
+        }
+
+        private void RegisterScores() {
+            currentAgents.ForEach(agent => scoreSources.ForEach(score => score.AddScoreListeners(agent)));
         }
 
         Transform NextRandomSpawn() {

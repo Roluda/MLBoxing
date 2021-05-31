@@ -129,7 +129,8 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 600
+  MaxStep: -1
+  behaviorParameters: {fileID: 228707360901564606}
   m_controller: {fileID: 4406720171450957128}
   m_character: {fileID: 8356318423351857832}
   m_opponent: {fileID: 0}

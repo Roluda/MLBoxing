@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MLBoxing.ML {
@@ -12,16 +10,8 @@ namespace MLBoxing.ML {
         float gridSpace = 10;
         [SerializeField]
         Arena[] arenaPrefabs = default;
-
-        [Header("Arena Overwrites")]
         [SerializeField]
         ModularAgent agentToTrain = default;
-        [SerializeField]
-        Reward[] rewardsToUse = default;
-        [SerializeField]
-        Terminater[] terminatersToUse = default;
-
-
 
         // Start is called before the first frame update
         void Start() {
@@ -29,18 +19,12 @@ namespace MLBoxing.ML {
         }
 
         void InitArenas() {
-            for(int x = 0; x< gridSize.x; x++) {
-                for(int y =0; y< gridSize.y; y++) {
+            for (int x = 0; x < gridSize.x; x++) {
+                for (int y = 0; y < gridSize.y; y++) {
                     var position = new Vector3(x, 0, y) * gridSpace;
                     var arena = Instantiate(arenaPrefabs[Random.Range(0, arenaPrefabs.Length)], position, Quaternion.identity, transform);
-                    if (agentToTrain) {
+                    if (agentToTrain != null) {
                         arena.SetAgentPrefab(agentToTrain);
-                    }
-                    if (rewardsToUse.Length > 0) {
-                        arena.SetRewards(rewardsToUse);
-                    }
-                    if(terminatersToUse.Length > 0) {
-                        arena.SetTerminaters(terminatersToUse);
                     }
                 }
             }

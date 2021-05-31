@@ -1180,6 +1180,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3b3af4aa206c640bd5d6ecc68f02f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hips: {fileID: 7099547556472170076}
+  torso: {fileID: 5843317999028258938}
+  head: {fileID: 3719605040831400457}
+  leftUpperArm: {fileID: 8614358942052834433}
+  leftForearm: {fileID: 1972770912174354350}
+  rightUpperArm: {fileID: 1408758671955838358}
+  rightForearm: {fileID: 2184295182809399941}
+  leftThigh: {fileID: 5909105181683449547}
+  leftShin: {fileID: 2673260882043437761}
+  rightThigh: {fileID: 5909105181683449547}
+  rightShin: {fileID: 2673260882043437761}
   neck: {fileID: 2617060057807808446}
   chest: {fileID: 74719068032060696}
   leftShoulder: {fileID: 7873081292771859761}

@@ -13,11 +13,15 @@ namespace MLBoxing.ML {
         public Action<ModularAgent> onTerminated;
         public Action<ModularAgent> onFixedUpdate;
         public Action<ModularAgent> onOpponentChanged;
+        public Action<ModularAgent> onWin;
+        public Action<ModularAgent> onLose;
         public Action<ModularAgent> onDefeated;
 
         public RagdollController controller => m_controller;
         public BoxingCharacter character => m_character;
         public ModularAgent opponent => m_opponent;
+
+        public float score { get; private set; }
 
 
         [SerializeField]
@@ -50,12 +54,28 @@ namespace MLBoxing.ML {
             behaviorParameters.TeamId = team;
         }
 
+        public void AddScore(float summand) {
+            score += summand;
+        }
+
+        public void Win() {
+            onWin?.Invoke(this);
+        }
+
+        public void Lose() {
+            onLose?.Invoke(this);
+        }
+
         /// <summary>
         /// Kills the agent
         /// </summary>
         public void Kill() {
+            if (dead) {
+                return;
+            }
             dead = true;
             EndEpisode();
+            score = 0;
         }
 
         /// <summary>

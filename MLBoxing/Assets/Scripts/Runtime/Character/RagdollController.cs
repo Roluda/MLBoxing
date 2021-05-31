@@ -5,6 +5,30 @@ using UnityEngine;
 
 namespace MLBoxing.Character {
     public class RagdollController : MonoBehaviour {
+        [Header("Rigidbodies")]
+        [SerializeField]
+        Rigidbody hips = default;
+        [SerializeField]
+        Rigidbody torso = default;
+        [SerializeField]
+        Rigidbody head = default;
+        [SerializeField]
+        Rigidbody leftUpperArm = default;
+        [SerializeField]
+        Rigidbody leftForearm = default;
+        [SerializeField]
+        Rigidbody rightUpperArm = default;
+        [SerializeField]
+        Rigidbody rightForearm = default;
+        [SerializeField]
+        Rigidbody leftThigh = default;
+        [SerializeField]
+        Rigidbody leftShin = default;
+        [SerializeField]
+        Rigidbody rightThigh = default;
+        [SerializeField]
+        Rigidbody rightShin = default;
+
         [Header("Joints")]
         [SerializeField]
         ConfigurableJoint neck = default;
@@ -61,6 +85,22 @@ namespace MLBoxing.Character {
                 yield return leftKnee;
                 yield return rightHip;
                 yield return rightKnee;
+            }
+        }
+
+        public IEnumerable<Rigidbody> allRigidbodies {
+            get {
+                yield return hips;
+                yield return torso;
+                yield return head;
+                yield return leftUpperArm;
+                yield return leftForearm;
+                yield return rightUpperArm;
+                yield return rightForearm;
+                yield return leftThigh;
+                yield return leftShin;
+                yield return rightThigh;
+                yield return rightShin;
             }
         }
 

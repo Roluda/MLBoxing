@@ -208,6 +208,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 182f7d73f954d7f438d76d96cf9c3b7a, type: 2}
   terminaters:
   - {fileID: 11400000, guid: 853b3a0b44e7f054c865bbee1e04e185, type: 2}
+  scoreSources: []
   possibleSpawnPoints:
   - {fileID: 4506786857346838568}
   - {fileID: 4506786857709724537}
+  episodeLength: 600
