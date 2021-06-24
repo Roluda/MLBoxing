@@ -40,11 +40,19 @@ namespace MLBoxing.UI {
         [SerializeField]
         LabeledSlider leftKneeX = default;
         [SerializeField]
+        LabeledSlider leftVerseX = default;
+        [SerializeField]
+        LabeledSlider leftVerseY = default;
+        [SerializeField]
         LabeledSlider rightHipX = default;
         [SerializeField]
         LabeledSlider rightHipY = default;
         [SerializeField]
         LabeledSlider rightKneeX = default;
+        [SerializeField]
+        LabeledSlider rightVerseX = default;
+        [SerializeField]
+        LabeledSlider rightVerseY = default;
 
         private void OnValidate() {
             neckX.label = nameof(neckX);
@@ -60,9 +68,13 @@ namespace MLBoxing.UI {
             leftHipX.label = nameof(leftHipX);
             leftHipY.label = nameof(leftHipY);
             leftKneeX.label = nameof(leftKneeX);
+            leftVerseX.label = nameof(leftVerseX);
+            leftVerseY.label = nameof(leftVerseY);
             rightHipX.label = nameof(rightHipX);
             rightHipY.label = nameof(rightHipY);
             rightKneeX.label = nameof(rightKneeX);
+            rightVerseX.label = nameof(rightVerseX);
+            rightVerseY.label = nameof(rightVerseY);
         }
 
         // Update is called once per frame
@@ -92,9 +104,14 @@ namespace MLBoxing.UI {
             leftHipX.value = observedRagdoll.leftHipX;
             leftHipY.value = observedRagdoll.leftHipY;
             leftKneeX.value = observedRagdoll.leftKneeX;
+            leftVerseX.value = observedRagdoll.leftVerseX;
+            leftVerseY.value = observedRagdoll.leftVerseY;
             rightHipX.value = observedRagdoll.rightHipX;
             rightHipY.value = observedRagdoll.rightHipY;
             rightKneeX.value = observedRagdoll.rightKneeX;
+            rightVerseX.value = observedRagdoll.rightVerseX;
+            rightVerseY.value = observedRagdoll.rightVerseY;
+
         }
 
         void SetRagdollValues() {
@@ -114,9 +131,13 @@ namespace MLBoxing.UI {
             observedRagdoll.leftHipX = leftHipX.value;
             observedRagdoll.leftHipY = leftHipY.value;
             observedRagdoll.leftKneeX = leftKneeX.value;
+            observedRagdoll.leftVerseX = leftVerseX.value;
+            observedRagdoll.leftVerseY = leftVerseY.value;
             observedRagdoll.rightHipX = rightHipX.value;
             observedRagdoll.rightHipY = rightHipY.value;
             observedRagdoll.rightKneeX = rightKneeX.value;
+            observedRagdoll.rightVerseX = rightVerseX.value;
+            observedRagdoll.rightVerseY = rightVerseY.value;
         }
 
         void CheckMouseInput() {

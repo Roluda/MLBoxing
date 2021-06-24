@@ -16,15 +16,20 @@ namespace MLBoxing.ML {
             agent.onFixedUpdate += AddMultiplicativeHeadHeightReward;
         }
 
+        public override void RemoveRewardListeners(ModularAgent agent) {
+            agent.onFixedUpdate -= CheckHeadAboveReward;
+            agent.onFixedUpdate -= AddMultiplicativeHeadHeightReward;
+        }
+
         private void AddMultiplicativeHeadHeightReward(ModularAgent agent) {
             if (headHeightMultiplier != 0) {
-                agent.AddReward(agent.character.head.transform.position.y / agent.character.height * headHeightMultiplier);
+                agent.AddReward(agent.character.head.transform.position.y / agent.character.height * headHeightMultiplier, nameof(headHeightMultiplier));
             }
         }
 
         private void CheckHeadAboveReward(ModularAgent agent) {
             if (agent.character.head.transform.position.y / agent.character.height > headAboveThreshold) {
-                agent.AddReward(headAboveReward);
+                agent.AddReward(headAboveReward, nameof(headAboveReward));
             }
         }
     }

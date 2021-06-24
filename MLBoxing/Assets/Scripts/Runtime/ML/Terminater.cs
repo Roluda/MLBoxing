@@ -5,5 +5,6 @@ using UnityEngine;
 namespace MLBoxing.ML {
     public abstract class Terminater : ScriptableObject {
         public abstract void AddTerminationListeners(ModularAgent agent);
+        public abstract void RemoveTerminationListeners(ModularAgent agent);
     }
 }

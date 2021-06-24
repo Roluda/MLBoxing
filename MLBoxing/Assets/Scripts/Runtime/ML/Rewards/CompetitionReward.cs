@@ -16,12 +16,19 @@ namespace MLBoxing.ML {
             agent.onLose += AddLoseReward;
         }
 
+        public override void RemoveRewardListeners(ModularAgent agent) {
+            agent.onWin -= AddWinReward;
+            agent.onLose -= AddLoseReward;
+        }
+
         void AddWinReward(ModularAgent agent) {
-            agent.AddReward(winReward);
+            agent.AddReward(winReward, nameof(winReward));
         }
 
         void AddLoseReward(ModularAgent agent) {
-            agent.AddReward(loseReward);
+            agent.AddReward(loseReward, nameof(loseReward));
         }
+
+
     }
 }

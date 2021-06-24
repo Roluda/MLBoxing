@@ -14,6 +14,10 @@ namespace MLBoxing.ML {
             agent.onFixedUpdate += CheckHeadOnGround;
         }
 
+        public override void RemoveTerminationListeners(ModularAgent agent) {
+            agent.onFixedUpdate -= CheckHeadOnGround;
+        }
+
         private void CheckHeadOnGround(ModularAgent agent) {
             if (agent.character.head.transform.position.y < groundHeight) {
                 agent.Terminate();

@@ -11,10 +11,10 @@ namespace MLBoxing.Character {
         float m_height = 1.7f;
 
         public GameObject head => m_head;
-        public GameObject chest => chest;
+        public GameObject chest => m_chest;
         public GameObject leftFoot => m_leftFoot;
 
-        public Vector3 position => transform.position;
+        public Vector3 position => m_hips.transform.position;
 
         [Header("Character Setup")]
         [SerializeField]
@@ -25,6 +25,8 @@ namespace MLBoxing.Character {
         GameObject m_rightHand = default;
         [SerializeField]
         GameObject m_chest = default;
+        [SerializeField]
+        GameObject m_hips = default;
         [SerializeField]
         GameObject m_leftFoot = default;
         [SerializeField]

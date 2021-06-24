@@ -35,6 +35,12 @@ namespace MLBoxing.ML {
 
         bool dead = false;
 
+
+        public int team { get => behaviorParameters.TeamId; set => behaviorParameters.TeamId = value; }
+
+        Dictionary<string, float> rewardSources = new Dictionary<string, float>();
+        Dictionary<string, float> scoreSources = new Dictionary<string, float>();
+
         public void SetOpponent(ModularAgent agent) {
             m_opponent = agent;
             onOpponentChanged?.Invoke(this);
@@ -45,13 +51,36 @@ namespace MLBoxing.ML {
         }
 
         public override void OnEpisodeBegin() {
+            foreach(var pair in rewardSources) {
+                Academy.Instance.StatsRecorder.Add("Reward: "+pair.Key, pair.Value);
+            }
+            foreach (var pair in scoreSources) {
+                Academy.Instance.StatsRecorder.Add("Score: "+pair.Key, pair.Value);
+            }
+            rewardSources.Clear();
+            scoreSources.Clear();
             if (dead) {
                 Destroy(gameObject);
             }
         }
 
-        public void SetTeam(int team) {
-            behaviorParameters.TeamId = team;
+
+        public void AddReward(float reward, string source) {
+            if (rewardSources.ContainsKey(source)) {
+                rewardSources[source] += reward;
+            } else {
+                rewardSources[source] = reward;
+            }
+            AddReward(reward);
+        }
+
+        public void AddScore(float summand, string source) {
+            if (scoreSources.ContainsKey(source)) {
+                scoreSources[source] += summand;
+            } else {
+                scoreSources[source] = summand;
+            }
+            AddScore(summand);
         }
 
         public void AddScore(float summand) {

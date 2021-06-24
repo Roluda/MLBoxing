@@ -10,19 +10,9 @@ namespace MLBoxing.ML {
     public class Arena : MonoBehaviour {
         [Header("Configuration")]
         [SerializeField]
-        ModularAgent agentPrefab = default;
+        Lesson lesson = default;
         [SerializeField]
-        public bool selfPlay = false;
-        [SerializeField]
-        List<Reward> rewards = default;
-        [SerializeField]
-        List<Terminater> terminaters = default;
-        [SerializeField]
-        List<Score> scoreSources = default;
-        [SerializeField]
-        Transform[] possibleSpawnPoints = default;
-        [SerializeField]
-        float episodeLength = 0;
+        public Transform[] possibleSpawnPoints = default;
 
 
         int steps = 0;
@@ -41,33 +31,22 @@ namespace MLBoxing.ML {
             UpdateEpisodeTime();
         }
 
-        public void SetAgentPrefab(ModularAgent agent) {
-            agentPrefab = agent;
-        }
-
-        public void SetRewards(Reward[] rewards) {
-            this.rewards = rewards.ToList();
-        }
-
-        public void SetTerminaters(Terminater[] terminaters) {
-            this.terminaters = terminaters.ToList();
+        public void SetLesson(Lesson lesson) {
+            this.lesson = lesson;
+            ResetArena();
         }
 
         public void UpdateEpisodeTime() {
-            if(episodeLength > 0) {
+            if(lesson.episodeLength > 0) {
                 steps++;
-                if (steps >= episodeLength) {
+                if (steps >= lesson.episodeLength) {
                     EndEpisode();
                 }
             }
         }
 
-        public void ShutDown() {
-            KillCurrentAgents();
-        }
-
         private void EndEpisode() {
-            if (selfPlay) {
+            if (lesson.selfPlay) {
                 DetermineWinner();
             }
             ResetArena();
@@ -98,37 +77,38 @@ namespace MLBoxing.ML {
         }
 
         void SpawnNewAgents() {
-            Assert.IsFalse(agentPrefab.enabled, "Agent has to be disabled on Initialize to prevent OnEnable");
+            Assert.IsFalse(lesson.student.enabled, "Agent has to be disabled on Initialize to prevent OnEnable");
             occupiedSpawnPoints.Clear();
             var nextSpawn = NextRandomSpawn();
-            var firstAgent = Instantiate(agentPrefab, nextSpawn.position , nextSpawn.rotation, transform);
+            var firstAgent = Instantiate(lesson.student, nextSpawn.position , nextSpawn.rotation, transform);
             firstAgent.onTerminated += (agent) => EndEpisode();
             currentAgents.Add(firstAgent);
-            if (selfPlay) {
+            if (lesson.mirrorOpponent || lesson.selfPlay) {
                 Assert.IsTrue(possibleSpawnPoints.Length > 1, "Not enough Spawn Points for self Play");
                 nextSpawn = NextRandomSpawn();
-                var secondAgent = Instantiate(agentPrefab, nextSpawn.position, nextSpawn.rotation, transform);
+                var secondAgent = Instantiate(lesson.student, nextSpawn.position, nextSpawn.rotation, transform);
                 secondAgent.onTerminated += (agent) => EndEpisode();
                 currentAgents.Add(secondAgent);
                 firstAgent.SetOpponent(secondAgent);
                 secondAgent.SetOpponent(firstAgent);
-                firstAgent.SetTeam(0);
-                secondAgent.SetTeam(1);
+                if (lesson.selfPlay) {
+                    secondAgent.team = firstAgent.team + 1;
+                }
                 secondAgent.enabled = true;
             }
             firstAgent.enabled = true;
         }
 
         private void RegisterRewards() {
-            currentAgents.ForEach(agent => rewards.ForEach(reward => reward.AddRewardListeners(agent)));
+            currentAgents.ForEach(agent => lesson.rewards.ForEach(reward => reward.AddRewardListeners(agent)));
         }
 
         private void RegisterTerminaters() {
-            currentAgents.ForEach(agent => terminaters.ForEach(terminater => terminater.AddTerminationListeners(agent)));
+            currentAgents.ForEach(agent => lesson.terminaters.ForEach(terminater => terminater.AddTerminationListeners(agent)));
         }
 
         private void RegisterScores() {
-            currentAgents.ForEach(agent => scoreSources.ForEach(score => score.AddScoreListeners(agent)));
+            currentAgents.ForEach(agent => lesson.scoreSources.ForEach(score => score.AddScoreListeners(agent)));
         }
 
         Transform NextRandomSpawn() {

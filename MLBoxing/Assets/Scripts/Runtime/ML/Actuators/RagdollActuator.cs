@@ -7,7 +7,7 @@ using UnityEngine;
 namespace MLBoxing.ML {
     public class RagdollActuator : IActuator {
 
-        const int actions = 16;
+        const int actions = 20;
 
         public RagdollController actuatedRagdoll;
 
@@ -30,9 +30,13 @@ namespace MLBoxing.ML {
             actuatedRagdoll.leftHipX = actionBuffers.ContinuousActions[index++];
             actuatedRagdoll.leftHipY = actionBuffers.ContinuousActions[index++];
             actuatedRagdoll.leftKneeX = actionBuffers.ContinuousActions[index++];
+            actuatedRagdoll.leftVerseX =actionBuffers.ContinuousActions[index++];
+            actuatedRagdoll.leftVerseY = actionBuffers.ContinuousActions[index++];
             actuatedRagdoll.rightHipX = actionBuffers.ContinuousActions[index++];
             actuatedRagdoll.rightHipY = actionBuffers.ContinuousActions[index++];
             actuatedRagdoll.rightKneeX = actionBuffers.ContinuousActions[index++];
+            actuatedRagdoll.rightVerseX = actionBuffers.ContinuousActions[index++];
+            actuatedRagdoll.rightVerseY = actionBuffers.ContinuousActions[index++];
         }
 
         public void ResetData() {

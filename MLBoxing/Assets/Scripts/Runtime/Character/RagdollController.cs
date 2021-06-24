@@ -25,9 +25,13 @@ namespace MLBoxing.Character {
         [SerializeField]
         Rigidbody leftShin = default;
         [SerializeField]
+        Rigidbody leftFoot = default;
+        [SerializeField]
         Rigidbody rightThigh = default;
         [SerializeField]
         Rigidbody rightShin = default;
+        [SerializeField]
+        Rigidbody rightFoot = default;
 
         [Header("Joints")]
         [SerializeField]
@@ -47,9 +51,13 @@ namespace MLBoxing.Character {
         [SerializeField]
         ConfigurableJoint leftKnee = default;
         [SerializeField]
+        ConfigurableJoint leftVerse = default;
+        [SerializeField]
         ConfigurableJoint rightHip = default;
         [SerializeField]
         ConfigurableJoint rightKnee = default;
+        [SerializeField]
+        ConfigurableJoint rightVerse = default;
 
         public float neckX { get; set; }
         public float neckY { get; set; }
@@ -68,10 +76,14 @@ namespace MLBoxing.Character {
         public float leftHipX { get; set; }
         public float leftHipY { get; set; }
         public float leftKneeX { get; set; }
+        public float leftVerseX { get; set; }
+        public float leftVerseY { get; set; }
 
         public float rightHipX { get; set; }
         public float rightHipY { get; set; }
         public float rightKneeX { get; set; }
+        public float rightVerseX { get; set; }
+        public float rightVerseY { get; set; }
 
         public IEnumerable<ConfigurableJoint> allJoints {
             get {
@@ -83,8 +95,10 @@ namespace MLBoxing.Character {
                 yield return rightElbow;
                 yield return leftHip;
                 yield return leftKnee;
+                yield return leftVerse;
                 yield return rightHip;
                 yield return rightKnee;
+                yield return rightVerse;
             }
         }
 
@@ -99,8 +113,10 @@ namespace MLBoxing.Character {
                 yield return rightForearm;
                 yield return leftThigh;
                 yield return leftShin;
+                yield return leftFoot;
                 yield return rightThigh;
                 yield return rightShin;
+                yield return rightFoot;
             }
         }
 
@@ -139,10 +155,14 @@ namespace MLBoxing.Character {
             leftHipX = GetNormalizedJointRotationX(leftHip);
             leftHipY = GetNormalizedJointRotationY(leftHip);
             leftKneeX = GetNormalizedJointRotationX(leftKnee);
+            leftVerseX = GetNormalizedJointRotationX(leftVerse);
+            leftVerseY = GetNormalizedJointRotationY(leftVerse);
 
             rightHipX = GetNormalizedJointRotationX(rightHip);
             rightHipY = GetNormalizedJointRotationY(rightHip);
             rightKneeX = GetNormalizedJointRotationX(rightKnee);
+            rightVerseX = GetNormalizedJointRotationX(rightVerse);
+            rightVerseY = GetNormalizedJointRotationY(rightVerse);
         }
 
         void SetAllTargetRotations() {
@@ -157,9 +177,11 @@ namespace MLBoxing.Character {
 
             SetTargetRotation(leftHip, leftHipX, leftHipY);
             SetTargetRotation(leftKnee, leftKneeX, 0);
+            SetTargetRotation(leftVerse, leftVerseX, leftVerseY);
 
             SetTargetRotation(rightHip, rightHipX, rightHipY);
             SetTargetRotation(rightKnee, rightKneeX, 0);
+            SetTargetRotation(rightVerse, rightVerseX, rightVerseY);
         }
 
         void SetTargetRotation(ConfigurableJoint joint, float normalizedX, float normalizedY) {
