@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Rewards {
     [CreateAssetMenu(fileName = "R_Existence_New", menuName = "ML/Rewards/Existence")]
     public class Existance : Reward {
         [SerializeField, Range(-1, 1)]
@@ -19,7 +19,9 @@ namespace MLBoxing.ML {
         }
 
         private void AddExistentialReward(ModularAgent agent) {
-            agent.AddReward(existantialReward, nameof(existantialReward));
+            if (existantialReward != 0) {
+                agent.AddReward(existantialReward, nameof(existantialReward), asScore);
+            }
         }
     }
 }

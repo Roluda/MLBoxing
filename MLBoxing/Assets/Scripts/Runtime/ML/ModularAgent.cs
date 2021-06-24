@@ -1,4 +1,4 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,33 +16,27 @@ namespace MLBoxing.ML {
         public Action<ModularAgent> onWin;
         public Action<ModularAgent> onLose;
         public Action<ModularAgent> onDefeated;
+        public Action<ModularAgent, float> onTakeDamage;
+        public Action<ModularAgent, float> onDealDamage;
 
-        public RagdollController controller => m_controller;
-        public BoxingCharacter character => m_character;
-        public ModularAgent opponent => m_opponent;
-
-        public float score { get; private set; }
-
-
+        [SerializeField]
+        public RagdollModel ragdoll;
+        [SerializeField]
+        public ModularAgent opponent;
         [SerializeField]
         BehaviorParameters behaviorParameters = default;
-        [SerializeField]
-        RagdollController m_controller = default;
-        [SerializeField]
-        BoxingCharacter m_character = default;
-        [SerializeField]
-        ModularAgent m_opponent = default;
+
+        public float score { get; private set; }
+        public int team { get => behaviorParameters.TeamId; set => behaviorParameters.TeamId = value; }
 
         bool dead = false;
 
-
-        public int team { get => behaviorParameters.TeamId; set => behaviorParameters.TeamId = value; }
 
         Dictionary<string, float> rewardSources = new Dictionary<string, float>();
         Dictionary<string, float> scoreSources = new Dictionary<string, float>();
 
         public void SetOpponent(ModularAgent agent) {
-            m_opponent = agent;
+            opponent = agent;
             onOpponentChanged?.Invoke(this);
         }
 
@@ -52,10 +46,10 @@ namespace MLBoxing.ML {
 
         public override void OnEpisodeBegin() {
             foreach(var pair in rewardSources) {
-                Academy.Instance.StatsRecorder.Add("Reward: "+pair.Key, pair.Value);
+                Academy.Instance.StatsRecorder.Add("Reward/"+pair.Key, pair.Value);
             }
             foreach (var pair in scoreSources) {
-                Academy.Instance.StatsRecorder.Add("Score: "+pair.Key, pair.Value);
+                Academy.Instance.StatsRecorder.Add("Score/"+pair.Key, pair.Value);
             }
             rewardSources.Clear();
             scoreSources.Clear();
@@ -65,22 +59,22 @@ namespace MLBoxing.ML {
         }
 
 
-        public void AddReward(float reward, string source) {
-            if (rewardSources.ContainsKey(source)) {
-                rewardSources[source] += reward;
+        public void AddReward(float reward, string source, bool asScore = false) {
+            if (asScore) {
+                if (scoreSources.ContainsKey(source)) {
+                    scoreSources[source] += reward;
+                } else {
+                    scoreSources[source] = reward;
+                }
+                AddScore(reward);
             } else {
-                rewardSources[source] = reward;
+                if (rewardSources.ContainsKey(source)) {
+                    rewardSources[source] += reward;
+                } else {
+                    rewardSources[source] = reward;
+                }
+                AddReward(reward);
             }
-            AddReward(reward);
-        }
-
-        public void AddScore(float summand, string source) {
-            if (scoreSources.ContainsKey(source)) {
-                scoreSources[source] += summand;
-            } else {
-                scoreSources[source] = summand;
-            }
-            AddScore(summand);
         }
 
         public void AddScore(float summand) {
@@ -113,6 +107,23 @@ namespace MLBoxing.ML {
         public void Terminate() {
             onTerminated?.Invoke(this);
             Kill();
+        }
+
+        void DealDamage(float damage) {
+            onDealDamage?.Invoke(this, damage);
+        }
+
+        void TakeDamage(float damage) {
+            onTakeDamage?.Invoke(this, damage);
+        }
+
+        private void Awake() {
+            foreach(var hitbox in ragdoll.allHitboxes) {
+                hitbox.onHit += DealDamage;
+            }
+            foreach(var hurtbox in ragdoll.allHurtboxes) {
+                hurtbox.onHurt += TakeDamage;
+            }
         }
 
         void FixedUpdate() {

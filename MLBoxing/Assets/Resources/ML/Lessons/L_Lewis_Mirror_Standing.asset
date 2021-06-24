@@ -15,10 +15,8 @@ MonoBehaviour:
   student: {fileID: 228707360901564577, guid: e8c4dd11db0cd334bbb2f9d3cfb19f5b, type: 3}
   rewards:
   - {fileID: 11400000, guid: bd16485c38e82f549a8ffb65f16a132c, type: 2}
-  - {fileID: 11400000, guid: 182f7d73f954d7f438d76d96cf9c3b7a, type: 2}
   terminaters:
   - {fileID: 11400000, guid: 853b3a0b44e7f054c865bbee1e04e185, type: 2}
-  scoreSources: []
   episodeLength: 600
   selfPlay: 0
   mirrorOpponent: 1

@@ -1,6 +1,7 @@
+using MLBoxing.Ragdoll;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Rewards {
     [CreateAssetMenu(fileName = "R_Posture_New", menuName = "ML/Rewards/Posture")]
     public class PostureReward : Reward {
         [SerializeField]
@@ -14,11 +15,14 @@ namespace MLBoxing.ML {
         }
 
         private void CalculatePostureRewards(ModularAgent agent) {
-            float headDistance = DistanceToLine(agent.character.position, agent.character.head.transform.position);
-            float chestDistance = DistanceToLine(agent.character.position, agent.character.chest.transform.position);
-            agent.AddReward(headDistance * headDistanceToLineMultiplier , nameof(headDistanceToLineMultiplier));
-            agent.AddReward(chestDistance * chestDistanceToLineMultiplier , nameof(chestDistanceToLineMultiplier));
-            Debug.Log($"Posture: {headDistance* headDistanceToLineMultiplier + chestDistance* chestDistanceToLineMultiplier}");
+            float headDistance = DistanceToLine(agent.ragdoll.root.position, agent.ragdoll.GetLimb(LimbType.Head).position);
+            float chestDistance = DistanceToLine(agent.ragdoll.root.position, agent.ragdoll.GetLimb(LimbType.Torso).position);
+            if (headDistanceToLineMultiplier != 0) {
+                agent.AddReward(headDistance * headDistanceToLineMultiplier, nameof(headDistanceToLineMultiplier), asScore);
+            }
+            if (chestDistanceToLineMultiplier != 0) {
+                agent.AddReward(chestDistance * chestDistanceToLineMultiplier, nameof(chestDistanceToLineMultiplier), asScore);
+            }
         }
 
         public override void RemoveRewardListeners(ModularAgent agent) {

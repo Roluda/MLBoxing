@@ -10,9 +10,7 @@ namespace MLBoxing.ML {
         [SerializeField]
         public List<Reward> rewards = default;
         [SerializeField]
-        public List<Terminater> terminaters = default;
-        [SerializeField]
-        public List<Score> scoreSources = default;
+        public List<Terminator> terminaters = default;
         [SerializeField]
         public int episodeLength = 600;
         [SerializeField]

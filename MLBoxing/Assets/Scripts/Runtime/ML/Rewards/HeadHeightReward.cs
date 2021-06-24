@@ -1,6 +1,8 @@
+using MLBoxing.Ragdoll;
+using System.Linq;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Rewards {
     [CreateAssetMenu(fileName="R_HeadHeight_New", menuName ="ML/Rewards/HeadHeight")]
     public class HeadHeightReward : Reward {
         [SerializeField, Range(-1, 1), Tooltip("Reward each step if above threshold")]
@@ -23,14 +25,20 @@ namespace MLBoxing.ML {
 
         private void AddMultiplicativeHeadHeightReward(ModularAgent agent) {
             if (headHeightMultiplier != 0) {
-                agent.AddReward(agent.character.head.transform.position.y / agent.character.height * headHeightMultiplier, nameof(headHeightMultiplier));
+                agent.AddReward(HeadHeight(agent) / agent.ragdoll.height * headHeightMultiplier, nameof(headHeightMultiplier), asScore);
             }
         }
 
         private void CheckHeadAboveReward(ModularAgent agent) {
-            if (agent.character.head.transform.position.y / agent.character.height > headAboveThreshold) {
-                agent.AddReward(headAboveReward, nameof(headAboveReward));
+            if (HeadHeight(agent) / agent.ragdoll.height > headAboveThreshold) {
+                if (headAboveReward != 0) {
+                    agent.AddReward(headAboveReward, nameof(headAboveReward), asScore);
+                }
             }
+        }
+
+        float HeadHeight(ModularAgent agent) {
+            return agent.ragdoll.GetLimb(LimbType.Head).position.y;
         }
     }
 }

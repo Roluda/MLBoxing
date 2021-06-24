@@ -1,14 +1,14 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.MLAgents.Actuators;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Actuators {
     public class RagdollActuator : IActuator {
         public JointType actuatedJoints = default;
 
-        public RagdollController actuatedRagdoll;
+        public RagdollModel actuatedRagdoll;
 
         public ActionSpec ActionSpec => GetActionSpec(actuatedRagdoll, actuatedJoints);
 
@@ -28,7 +28,7 @@ namespace MLBoxing.ML {
         public void WriteDiscreteActionMask(IDiscreteActionMask actionMask) {
         }
 
-        public static ActionSpec GetActionSpec(RagdollController ragdoll, JointType joints) {
+        public static ActionSpec GetActionSpec(RagdollModel ragdoll, JointType joints) {
             return new ActionSpec { NumContinuousActions = ragdoll.FilterJoints(joints).Count() * 2};
         }
     }

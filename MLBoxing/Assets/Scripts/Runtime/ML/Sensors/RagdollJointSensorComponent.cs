@@ -1,11 +1,11 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Sensors {
     public class RagdollJointSensorComponent : SensorComponent {
         enum TargetRagdoll {
             Self,
@@ -21,7 +21,7 @@ namespace MLBoxing.ML {
         [SerializeField]
         JointType observedJoints = default;
         [SerializeField]
-        RagdollController observedRagdoll = default;
+        RagdollModel observedRagdoll = default;
         RagdollJointSensor sensor;
 
         private void OnValidate() {
@@ -41,15 +41,15 @@ namespace MLBoxing.ML {
         private void Setup(ModularAgent agent) {
             switch (targetRagdoll) {
                 case TargetRagdoll.Self:
-                    SetObservedRagdoll(agent.controller);
+                    SetObservedRagdoll(agent.ragdoll);
                     break;
                 case TargetRagdoll.Opponent:
-                    SetObservedRagdoll(agent.opponent.controller);
+                    SetObservedRagdoll(agent.opponent.ragdoll);
                     break;
             }
         }
 
-        public void SetObservedRagdoll(RagdollController ragdoll) {
+        public void SetObservedRagdoll(RagdollModel ragdoll) {
             observedRagdoll = ragdoll;
             if (sensor!= null) {
                 sensor.ragdoll = ragdoll;

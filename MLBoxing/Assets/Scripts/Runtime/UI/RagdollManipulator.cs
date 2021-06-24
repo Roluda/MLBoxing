@@ -1,4 +1,4 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ namespace MLBoxing.UI {
 
         [Header("Debug Tool")]
         [SerializeField]
-        RagdollController observedRagdoll = default;
+        RagdollModel observedRagdoll = default;
         [SerializeField, EnumFlags]
         JointType manipulatedJoints = default;
         [SerializeField]
@@ -25,7 +25,6 @@ namespace MLBoxing.UI {
 
         List<JointSlider> currentSliders = new List<JointSlider>();
 
-        bool isDirty = false;
         JointType oldJoints;
 
         void OnValidate() {
@@ -41,12 +40,14 @@ namespace MLBoxing.UI {
         void RefreshSliders() {
             currentSliders.ForEach(slider => Destroy(slider.gameObject));
             currentSliders.Clear();
-            foreach (var joint in observedRagdoll.FilterJoints(manipulatedJoints)) {
-                var newSlider = Instantiate(sliderPrefab, spawnContext);
-                newSlider.attachedJoint = joint;
-                newSlider.read = mode == Mode.Read;
-                newSlider.label = joint.jointType.ToString();
-                currentSliders.Add(newSlider);
+            if (observedRagdoll) {
+                foreach (var joint in observedRagdoll.FilterJoints(manipulatedJoints)) {
+                    var newSlider = Instantiate(sliderPrefab, spawnContext);
+                    newSlider.attachedJoint = joint;
+                    newSlider.read = mode == Mode.Read;
+                    newSlider.label = joint.jointType.ToString();
+                    currentSliders.Add(newSlider);
+                }
             }
         }
 
@@ -58,7 +59,7 @@ namespace MLBoxing.UI {
         void CheckMouseInput() {
             if (Input.GetMouseButtonDown(0)) {
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hitInfo)) {
-                    var controller = hitInfo.collider.GetComponentInParent<RagdollController>();
+                    var controller = hitInfo.collider.GetComponentInParent<RagdollModel>();
                     if (controller) {
                         observedRagdoll = controller;
                         RefreshSliders();

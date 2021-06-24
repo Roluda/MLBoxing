@@ -1,15 +1,15 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Sensors {
     public class RagdollJointSensor : ISensor {
-        public RagdollController ragdoll;
+        public RagdollModel ragdoll;
         public string name;
-        public JointType observedJoints;
+        public JointType observedJoints = default;
 
         public byte[] GetCompressedObservation() {
             Debug.LogError("This Sensor does not implement a compressed Observation");
@@ -47,7 +47,7 @@ namespace MLBoxing.ML {
             }
         }
 
-        public static int[] GetShape(RagdollController ragdoll, JointType joints) {
+        public static int[] GetShape(RagdollModel ragdoll, JointType joints) {
             return new int[] { ragdoll.FilterJoints(joints).Count() *2 };
         }
     }

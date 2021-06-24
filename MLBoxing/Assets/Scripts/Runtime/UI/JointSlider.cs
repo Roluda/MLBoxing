@@ -1,4 +1,4 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +26,12 @@ namespace MLBoxing.UI {
             }
         }
 
-        private void Update() {
+        private void Start() {
+            sliderX.value = attachedJoint.positionInputX;
+            sliderY.value = attachedJoint.positionInputY;
+        }
+
+        private void FixedUpdate() {
             if (read) {
                 sliderX.value = attachedJoint.positionInputX;
                 sliderY.value = attachedJoint.positionInputY;

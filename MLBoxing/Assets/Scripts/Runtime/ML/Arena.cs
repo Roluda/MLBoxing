@@ -67,7 +67,6 @@ namespace MLBoxing.ML {
             SpawnNewAgents();
             RegisterRewards();
             RegisterTerminaters();
-            RegisterScores();
             steps = 0;
         }
 
@@ -105,10 +104,6 @@ namespace MLBoxing.ML {
 
         private void RegisterTerminaters() {
             currentAgents.ForEach(agent => lesson.terminaters.ForEach(terminater => terminater.AddTerminationListeners(agent)));
-        }
-
-        private void RegisterScores() {
-            currentAgents.ForEach(agent => lesson.scoreSources.ForEach(score => score.AddScoreListeners(agent)));
         }
 
         Transform NextRandomSpawn() {

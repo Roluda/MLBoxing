@@ -1,14 +1,13 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Linq;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Sensors {
     public class CenterOfMassSensor : ISensor {
         public string name;
 
-        public RagdollController ragdoll;
-        public BoxingCharacter character;
+        public RagdollModel ragdoll;
 
         public Vector3 centerOfMass {
             get {
@@ -36,14 +35,14 @@ namespace MLBoxing.ML {
         }
 
         public int Write(ObservationWriter writer) {
-            var localPosition = centerOfMass - character.position;
-            var clampedPosition = Vector3.ClampMagnitude(localPosition, character.height);
-            var normalizedPosition = clampedPosition / character.height;
+            var localPosition = centerOfMass - ragdoll.root.position;
+            var clampedPosition = Vector3.ClampMagnitude(localPosition, ragdoll.height);
+            var normalizedPosition = clampedPosition / ragdoll.height;
             writer.Add(normalizedPosition);
             return 3;
         }
 
-        Vector3 CalculateCenterOfMass(RagdollController ragdoll) {
+        Vector3 CalculateCenterOfMass(RagdollModel ragdoll) {
             return ragdoll.allLimbs.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allLimbs.Sum(rigid => rigid.mass);
         }
 

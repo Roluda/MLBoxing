@@ -1,10 +1,10 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents.Actuators;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Actuators {
     public class RagdollActuatorComponent : ActuatorComponent {
 
         [SerializeField]
@@ -18,12 +18,12 @@ namespace MLBoxing.ML {
             }
         }
 
-        public override ActionSpec ActionSpec => RagdollActuator.GetActionSpec(observedAgent.controller, actuatedJoints);
+        public override ActionSpec ActionSpec => RagdollActuator.GetActionSpec(observedAgent.ragdoll, actuatedJoints);
 
         [System.Obsolete]
         public override IActuator CreateActuator() {
             return new RagdollActuator() {
-                actuatedRagdoll = observedAgent.controller,
+                actuatedRagdoll = observedAgent.ragdoll,
                 actuatedJoints = actuatedJoints,
             };
         }

@@ -1,10 +1,10 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Sensors {
     public class CenterOfMassSensorComponent : SensorComponent {
         enum TargetCharacter {
             Self,
@@ -18,9 +18,7 @@ namespace MLBoxing.ML {
         int stackedObservations = 1;
 
         [SerializeField]
-        RagdollController observedRagdoll = default;
-        [SerializeField]
-        BoxingCharacter observedCharacter = default;
+        RagdollModel observedRagdoll = default;
 
         [SerializeField]
         Vector3 centerOfMassDebug = default;
@@ -38,24 +36,16 @@ namespace MLBoxing.ML {
         private void Setup(ModularAgent agent) {
             switch (targetCharacter) {
                 case TargetCharacter.Self:
-                    SetObservedRagdoll(agent.controller);
-                    SetObservedCharacter(agent.character);
+                    SetObservedRagdoll(agent.ragdoll);
                     break;
                 case TargetCharacter.Opponent:
-                    SetObservedRagdoll(agent.opponent.controller);
-                    SetObservedCharacter(agent.opponent.character);
+                    SetObservedRagdoll(agent.opponent.ragdoll);
                     break;
             }
         }
 
-        public void SetObservedCharacter(BoxingCharacter character) {
-            observedCharacter = character;
-            if (sensor != null) {
-                sensor.character = character;
-            }
-        }
 
-        public void SetObservedRagdoll(RagdollController ragdoll) {
+        public void SetObservedRagdoll(RagdollModel ragdoll) {
             observedRagdoll = ragdoll;
             if (sensor != null) {
                 sensor.ragdoll = ragdoll;
@@ -71,7 +61,6 @@ namespace MLBoxing.ML {
         public override ISensor CreateSensor() {
             sensor = new CenterOfMassSensor() {
                 ragdoll = observedRagdoll,
-                character = observedCharacter,
                 name = gameObject.name
             };
             return new StackingSensor(sensor, stackedObservations);

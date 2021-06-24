@@ -1,10 +1,10 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Sensors {
     public class EnemyPositionSensorComponent : SensorComponent {
 
         [SerializeField]
@@ -13,9 +13,9 @@ namespace MLBoxing.ML {
         int stackedObservations = 1;
 
         [SerializeField]
-        BoxingCharacter observedCharacter = default;
+        RagdollModel self = default;
         [SerializeField]
-        BoxingCharacter observedEnemyCharacter = default;
+        RagdollModel enemy = default;
 
         EnemyPositionSensor sensor;
 
@@ -28,15 +28,15 @@ namespace MLBoxing.ML {
         }
 
         private void Setup(ModularAgent agent) {
-            SetObservedCharacters(agent.character, agent.opponent.character);
+            SetObservedRagdolls(agent.ragdoll, agent.opponent.ragdoll);
         }
 
-        public void SetObservedCharacters(BoxingCharacter character, BoxingCharacter enemy) {
-            observedCharacter = character;
-            observedEnemyCharacter = enemy;
+        public void SetObservedRagdolls(RagdollModel self, RagdollModel enemy) {
+            this.self = self;
+            this.enemy = enemy;
             if (sensor != null) {
-                sensor.character = character;
-                sensor.enemyCharacter = enemy;
+                sensor.self = self;
+                sensor.enemy = enemy;
             }
         }
 
@@ -48,8 +48,8 @@ namespace MLBoxing.ML {
 
         public override ISensor CreateSensor() {
             sensor = new EnemyPositionSensor() {
-                character = observedCharacter,
-                enemyCharacter = observedEnemyCharacter,
+                self = self,
+                enemy = enemy,
                 name = gameObject.name
             };
             return new StackingSensor(sensor, stackedObservations);

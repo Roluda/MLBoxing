@@ -1,16 +1,16 @@
-using MLBoxing.Character;
+using MLBoxing.Ragdoll;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-namespace MLBoxing.ML {
+namespace MLBoxing.ML.Sensors {
     public class EnemyPositionSensor : ISensor {
         public string name;
 
-        public BoxingCharacter character;
-        public BoxingCharacter enemyCharacter;
+        public RagdollModel self;
+        public RagdollModel enemy;
 
         public float maxRange = 5;
 
@@ -32,8 +32,8 @@ namespace MLBoxing.ML {
         }
 
         public int Write(ObservationWriter writer) {
-            var deltaPosition = enemyCharacter.position - character.position;
-            Quaternion inverseRotation = Quaternion.Inverse(character.transform.rotation);
+            var deltaPosition = self.root.position - self.root.position;
+            Quaternion inverseRotation = Quaternion.Inverse(self.root.transform.rotation);
             var subjectivePosition = inverseRotation * deltaPosition;
             var clampedPosition = Vector3.ClampMagnitude(subjectivePosition, maxRange);
             var normalizedPosition = clampedPosition / maxRange;
