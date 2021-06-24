@@ -13,7 +13,7 @@ namespace MLBoxing.ML {
         public Vector3 centerOfMass {
             get {
                 return ragdoll
-                    ? ragdoll.allRigidbodies.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allRigidbodies.Sum(rigid => rigid.mass)
+                    ? ragdoll.allLimbs.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allLimbs.Sum(rigid => rigid.mass)
                     : Vector3.zero;
             }
         }
@@ -44,7 +44,7 @@ namespace MLBoxing.ML {
         }
 
         Vector3 CalculateCenterOfMass(RagdollController ragdoll) {
-            return ragdoll.allRigidbodies.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allRigidbodies.Sum(rigid => rigid.mass);
+            return ragdoll.allLimbs.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allLimbs.Sum(rigid => rigid.mass);
         }
 
         //Inherited

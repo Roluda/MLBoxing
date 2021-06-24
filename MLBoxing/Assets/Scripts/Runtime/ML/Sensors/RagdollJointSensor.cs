@@ -9,6 +9,7 @@ namespace MLBoxing.ML {
     public class RagdollJointSensor : ISensor {
         public RagdollController ragdoll;
         public string name;
+        public JointType observedJoints;
 
         public byte[] GetCompressedObservation() {
             Debug.LogError("This Sensor does not implement a compressed Observation");
@@ -24,7 +25,7 @@ namespace MLBoxing.ML {
         }
 
         public int[] GetObservationShape() {
-            return GetShape(ragdoll);
+            return GetShape(ragdoll, observedJoints);
         }
 
         public int Write(ObservationWriter writer) {
@@ -40,23 +41,14 @@ namespace MLBoxing.ML {
         void ISensor.Update() {}
 
         public IEnumerable<float> GetAllCurrentJointRotationsNormalized() {
-            foreach(var joint in ragdoll.allJoints) {
-                yield return ragdoll.GetNormalizedJointRotationX(joint);
-                if(joint.angularYLimit.limit > 0) {
-                    yield return ragdoll.GetNormalizedJointRotationY(joint);
-                }
+            foreach(var joint in ragdoll.FilterJoints(observedJoints)) {
+                yield return joint.GetNormalizedJointRotationX();
+                yield return joint.GetNormalizedJointRotationY();
             }
         }
 
-        public static int[] GetShape(RagdollController ragdoll) {
-            int movingAxisCount = 0;
-            foreach (var joint in ragdoll.allJoints) {
-                movingAxisCount++;
-                if (joint.angularYLimit.limit > 0) {
-                    movingAxisCount++;
-                }
-            }
-            return new int[] { movingAxisCount };
+        public static int[] GetShape(RagdollController ragdoll, JointType joints) {
+            return new int[] { ragdoll.FilterJoints(joints).Count() *2 };
         }
     }
 }

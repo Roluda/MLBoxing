@@ -46,6 +46,7 @@ MonoBehaviour:
   observedAgent: {fileID: 228707360901564577}
   stackedObservations: 1
   targetRagdoll: 0
+  observedJoints: -1
   observedRagdoll: {fileID: 8856354262345939808, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
 --- !u!1 &228707360901564576
 GameObject:
@@ -201,7 +202,7 @@ MonoBehaviour:
   stackedObservations: 1
   observedRagdoll: {fileID: 4406720171450957128}
   observedCharacter: {fileID: 8356318423351857832}
-  centerOfMassDebug: {x: -0.0340542, y: 1.0604666, z: -0.048369754}
+  centerOfMassDebug: {x: -0.0017228837, y: 0.97751415, z: -0.05359994}
 --- !u!1 &4268037735231167287
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +249,7 @@ MonoBehaviour:
   observedAgent: {fileID: 228707360901564577}
   stackedObservations: 1
   targetRagdoll: 1
+  observedJoints: -1
   observedRagdoll: {fileID: 8856354262345939808, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
 --- !u!1 &5129147184177442381
 GameObject:
@@ -434,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   observedAgent: {fileID: 228707360901564577}
+  actuatedJoints: 16239
 --- !u!1 &7862247932698903960
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +485,7 @@ MonoBehaviour:
   stackedObservations: 1
   observedRagdoll: {fileID: 4406720171450957128}
   observedCharacter: {fileID: 8356318423351857832}
-  centerOfMassDebug: {x: -0.0340542, y: 1.0604666, z: -0.048369754}
+  centerOfMassDebug: {x: -0.0017228837, y: 0.97751415, z: -0.05359994}
 --- !u!1001 &5174574273565853224
 PrefabInstance:
   m_ObjectHideFlags: 0

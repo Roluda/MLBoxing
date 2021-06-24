@@ -9,6 +9,8 @@ namespace MLBoxing.ML {
 
         [SerializeField]
         ModularAgent observedAgent = default;
+        [SerializeField, EnumFlags]
+        JointType actuatedJoints = default;
 
         private void OnValidate() {
             if (!observedAgent) {
@@ -16,12 +18,13 @@ namespace MLBoxing.ML {
             }
         }
 
-        public override ActionSpec ActionSpec => RagdollActuator.GetActionSpec();
+        public override ActionSpec ActionSpec => RagdollActuator.GetActionSpec(observedAgent.controller, actuatedJoints);
 
         [System.Obsolete]
         public override IActuator CreateActuator() {
             return new RagdollActuator() {
-                actuatedRagdoll = observedAgent.controller
+                actuatedRagdoll = observedAgent.controller,
+                actuatedJoints = actuatedJoints,
             };
         }
     }

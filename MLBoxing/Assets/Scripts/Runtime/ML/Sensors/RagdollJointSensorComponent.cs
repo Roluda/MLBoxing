@@ -18,7 +18,8 @@ namespace MLBoxing.ML {
         int stackedObservations = 1;
         [SerializeField]
         TargetRagdoll targetRagdoll = TargetRagdoll.Self;
-
+        [SerializeField]
+        JointType observedJoints = default;
         [SerializeField]
         RagdollController observedRagdoll = default;
         RagdollJointSensor sensor;
@@ -58,13 +59,14 @@ namespace MLBoxing.ML {
         public override ISensor CreateSensor() {
             sensor = new RagdollJointSensor() {
                 ragdoll = observedRagdoll,
-                name = gameObject.name
+                name = gameObject.name,
+                observedJoints = observedJoints
             };
             return new StackingSensor(sensor, stackedObservations);
         }
 
         public override int[] GetObservationShape() {
-            return RagdollJointSensor.GetShape(observedRagdoll);
+            return RagdollJointSensor.GetShape(observedRagdoll, observedJoints);
         }
     }
 }

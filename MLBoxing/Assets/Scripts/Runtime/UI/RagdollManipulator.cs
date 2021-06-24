@@ -1,4 +1,5 @@
 using MLBoxing.Character;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MLBoxing.UI {
@@ -7,137 +8,51 @@ namespace MLBoxing.UI {
             Read,
             Write
         }
+
+        [Header("Debug Tool")]
+        [SerializeField]
+        RagdollController observedRagdoll = default;
+        [SerializeField, EnumFlags]
+        JointType manipulatedJoints = default;
         [SerializeField]
         Mode mode = Mode.Write;
 
+        [Header("Monobehaviour Config")]
         [SerializeField]
-        RagdollController observedRagdoll = default;
+        Transform spawnContext = default;
+        [SerializeField]
+        JointSlider sliderPrefab = default;
 
-        [SerializeField]
-        LabeledSlider neckX = default;
-        [SerializeField]
-        LabeledSlider neckY = default;
-        [SerializeField]
-        LabeledSlider chestX = default;
-        [SerializeField]
-        LabeledSlider chestY = default;
-        [SerializeField]
-        LabeledSlider leftShoulderX = default;
-        [SerializeField]
-        LabeledSlider leftShoulderY = default;
-        [SerializeField]
-        LabeledSlider leftElbowX = default;
-        [SerializeField]
-        LabeledSlider rightShoulderX = default;
-        [SerializeField]
-        LabeledSlider rightShoulderY = default;
-        [SerializeField]
-        LabeledSlider rightElbowX = default;
-        [SerializeField]
-        LabeledSlider leftHipX = default;
-        [SerializeField]
-        LabeledSlider leftHipY = default;
-        [SerializeField]
-        LabeledSlider leftKneeX = default;
-        [SerializeField]
-        LabeledSlider leftVerseX = default;
-        [SerializeField]
-        LabeledSlider leftVerseY = default;
-        [SerializeField]
-        LabeledSlider rightHipX = default;
-        [SerializeField]
-        LabeledSlider rightHipY = default;
-        [SerializeField]
-        LabeledSlider rightKneeX = default;
-        [SerializeField]
-        LabeledSlider rightVerseX = default;
-        [SerializeField]
-        LabeledSlider rightVerseY = default;
+        List<JointSlider> currentSliders = new List<JointSlider>();
 
-        private void OnValidate() {
-            neckX.label = nameof(neckX);
-            neckY.label = nameof(neckY);
-            chestX.label = nameof(chestX);
-            chestY.label = nameof(chestY);
-            leftShoulderX.label = nameof(leftShoulderX);
-            leftShoulderY.label = nameof(leftShoulderY);
-            leftElbowX.label = nameof(leftElbowX);
-            rightShoulderX.label = nameof(rightShoulderX);
-            rightShoulderY.label = nameof(rightShoulderY);
-            rightElbowX.label = nameof(rightElbowX);
-            leftHipX.label = nameof(leftHipX);
-            leftHipY.label = nameof(leftHipY);
-            leftKneeX.label = nameof(leftKneeX);
-            leftVerseX.label = nameof(leftVerseX);
-            leftVerseY.label = nameof(leftVerseY);
-            rightHipX.label = nameof(rightHipX);
-            rightHipY.label = nameof(rightHipY);
-            rightKneeX.label = nameof(rightKneeX);
-            rightVerseX.label = nameof(rightVerseX);
-            rightVerseY.label = nameof(rightVerseY);
+        bool isDirty = false;
+        JointType oldJoints;
+
+        void OnValidate() {
+            if (Application.isPlaying) {
+                if(oldJoints != manipulatedJoints) {
+                    oldJoints = manipulatedJoints;
+                    RefreshSliders();
+                }
+                currentSliders.ForEach(slider => slider.read = mode == Mode.Read);
+            }
+        }
+
+        void RefreshSliders() {
+            currentSliders.ForEach(slider => Destroy(slider.gameObject));
+            currentSliders.Clear();
+            foreach (var joint in observedRagdoll.FilterJoints(manipulatedJoints)) {
+                var newSlider = Instantiate(sliderPrefab, spawnContext);
+                newSlider.attachedJoint = joint;
+                newSlider.read = mode == Mode.Read;
+                newSlider.label = joint.jointType.ToString();
+                currentSliders.Add(newSlider);
+            }
         }
 
         // Update is called once per frame
         void Update() {
             CheckMouseInput();
-            if (mode == Mode.Write) {
-                SetRagdollValues();
-            } else {
-                SetSliderValues();
-            }
-        }
-
-        void SetSliderValues() {
-            if (!observedRagdoll) {
-                return;
-            }
-            neckX.value = observedRagdoll.neckX;
-            neckY.value = observedRagdoll.neckY;
-            chestX.value = observedRagdoll.chestX;
-            chestY.value = observedRagdoll.chestY;
-            leftShoulderX.value = observedRagdoll.leftShoulderX;
-            leftShoulderY.value = observedRagdoll.leftShoulderY;
-            leftElbowX.value = observedRagdoll.leftElbowX;
-            rightShoulderX.value = observedRagdoll.rightShoulderX;
-            rightShoulderY.value = observedRagdoll.rightShoulderY;
-            rightElbowX.value = observedRagdoll.rightElbowX;
-            leftHipX.value = observedRagdoll.leftHipX;
-            leftHipY.value = observedRagdoll.leftHipY;
-            leftKneeX.value = observedRagdoll.leftKneeX;
-            leftVerseX.value = observedRagdoll.leftVerseX;
-            leftVerseY.value = observedRagdoll.leftVerseY;
-            rightHipX.value = observedRagdoll.rightHipX;
-            rightHipY.value = observedRagdoll.rightHipY;
-            rightKneeX.value = observedRagdoll.rightKneeX;
-            rightVerseX.value = observedRagdoll.rightVerseX;
-            rightVerseY.value = observedRagdoll.rightVerseY;
-
-        }
-
-        void SetRagdollValues() {
-            if (!observedRagdoll) {
-                return;
-            }
-            observedRagdoll.neckX = neckX.value;
-            observedRagdoll.neckY = neckY.value;
-            observedRagdoll.chestX = chestX.value;
-            observedRagdoll.chestY = chestY.value;
-            observedRagdoll.leftShoulderX = leftShoulderX.value;
-            observedRagdoll.leftShoulderY = leftShoulderY.value;
-            observedRagdoll.leftElbowX = leftElbowX.value;
-            observedRagdoll.rightShoulderX = rightShoulderX.value;
-            observedRagdoll.rightShoulderY = rightShoulderY.value;
-            observedRagdoll.rightElbowX = rightElbowX.value;
-            observedRagdoll.leftHipX = leftHipX.value;
-            observedRagdoll.leftHipY = leftHipY.value;
-            observedRagdoll.leftKneeX = leftKneeX.value;
-            observedRagdoll.leftVerseX = leftVerseX.value;
-            observedRagdoll.leftVerseY = leftVerseY.value;
-            observedRagdoll.rightHipX = rightHipX.value;
-            observedRagdoll.rightHipY = rightHipY.value;
-            observedRagdoll.rightKneeX = rightKneeX.value;
-            observedRagdoll.rightVerseX = rightVerseX.value;
-            observedRagdoll.rightVerseY = rightVerseY.value;
         }
 
         void CheckMouseInput() {
@@ -146,6 +61,7 @@ namespace MLBoxing.UI {
                     var controller = hitInfo.collider.GetComponentInParent<RagdollController>();
                     if (controller) {
                         observedRagdoll = controller;
+                        RefreshSliders();
                     }
                 }
             }
