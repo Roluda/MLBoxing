@@ -9,7 +9,9 @@ namespace MLBoxing.ML.Sensors {
     public class RagdollLimbSensor : ISensor {
         public string name;
 
-        public RagdollModel ragdoll;
+        public float maxRange;
+        public RagdollModel self;
+        public RagdollModel observedRagdoll;
         public LimbType observedLimbs;
 
         public byte[] GetCompressedObservation() {
@@ -26,19 +28,22 @@ namespace MLBoxing.ML.Sensors {
         }
 
         public int[] GetObservationShape() {
-            return GetShape(ragdoll, observedLimbs);
+            return GetShape(observedRagdoll, observedLimbs);
         }
 
         public int Write(ObservationWriter writer) {
             int observations = 0;
-            foreach(var limb in ragdoll.FilterLimbs(observedLimbs)) {
-                var localPosition = limb.transform.position - ragdoll.root.position;
-                var clampedPosition = Vector3.ClampMagnitude(localPosition, ragdoll.height);
-                var normalizedPosition = clampedPosition / ragdoll.height;
-                writer.Add(normalizedPosition, observations);
+            foreach(var position in NormalizedPositionsSubjective()) {
+                writer.Add(position);
                 observations += 3;
             }
             return observations;
+        }
+
+        public IEnumerable<Vector3> NormalizedPositionsSubjective() {
+            foreach(var limb in observedRagdoll.FilterLimbs(observedLimbs)) {
+                yield return SensorUtility.GetNormalizedSubjectivePosition(self, limb.position, maxRange);
+            }
         }
 
         //Inherited

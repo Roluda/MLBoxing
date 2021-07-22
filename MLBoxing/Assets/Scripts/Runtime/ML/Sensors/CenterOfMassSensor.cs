@@ -7,15 +7,11 @@ namespace MLBoxing.ML.Sensors {
     public class CenterOfMassSensor : ISensor {
         public string name;
 
-        public RagdollModel ragdoll;
+        public float maxRange;
+        public RagdollModel self;
+        public RagdollModel observedRagdoll;
 
-        public Vector3 centerOfMass {
-            get {
-                return ragdoll
-                    ? ragdoll.allLimbs.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allLimbs.Sum(rigid => rigid.mass)
-                    : Vector3.zero;
-            }
-        }
+        public Vector3 centerOfMass => SensorUtility.GetNormalizedSubjectivePosition(self, CalculateCenterOfMass(observedRagdoll), maxRange);
 
         public byte[] GetCompressedObservation() {
             Debug.LogError("This Sensor does not implement a compressed Observation");
@@ -35,14 +31,14 @@ namespace MLBoxing.ML.Sensors {
         }
 
         public int Write(ObservationWriter writer) {
-            var localPosition = centerOfMass - ragdoll.root.position;
-            var clampedPosition = Vector3.ClampMagnitude(localPosition, ragdoll.height);
-            var normalizedPosition = clampedPosition / ragdoll.height;
-            writer.Add(normalizedPosition);
+            writer.Add(centerOfMass);
             return 3;
         }
 
         Vector3 CalculateCenterOfMass(RagdollModel ragdoll) {
+            if (!ragdoll) {
+                return Vector3.zero;
+            }
             return ragdoll.allLimbs.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allLimbs.Sum(rigid => rigid.mass);
         }
 

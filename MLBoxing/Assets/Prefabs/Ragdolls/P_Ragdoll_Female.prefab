@@ -66,7 +66,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &74719068032060696
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -99,22 +99,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -26.99477
+    limit: -25
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 15.495659
+    limit: 15
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 15.378184
+    limit: 15
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 3
+    limit: 40
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -177,8 +177,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 74719068032060696}
   jointType: 2
-  positionInputX: 0
-  positionInputY: 0
+  axis: 7
+  inputX: 0.625
+  inputY: 0.5
+  inputZ: 0.5
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 3
 --- !u!114 &1073261731436548791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,8 +308,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: -1
-  m_CollisionDetection: 0
+  m_Constraints: 865
+  m_CollisionDetection: 2
 --- !u!114 &624327596335459738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +420,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &2617060057807808446
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -446,22 +453,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -53.06772
+    limit: -50
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 51.394733
+    limit: 50
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 32.786774
+    limit: 30
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 60
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -538,8 +545,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 2617060057807808446}
   jointType: 1
-  positionInputX: 0
-  positionInputY: 0
+  axis: 7
+  inputX: 0.5
+  inputY: 0.5
+  inputZ: 0.5
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 3
 --- !u!114 &8943774505540208752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,8 +1305,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 7099547556472170076}
-  height: 0
-  span: 0
+  height: 1.6181977
+  span: 1.3342121
   limbs:
   - {fileID: 624327596335459738}
   - {fileID: 1073261731436548791}
@@ -1330,7 +1344,9 @@ MonoBehaviour:
   hitboxes:
   - {fileID: 8800962554182272634}
   - {fileID: 2997457770966705154}
-  rootConstraints: -1
+  rootConstraints: 865
+  applyControlTypeToAllJoints: 1
+  controlType: 0
   totalDamageTaken: 0
   totalDamageDealt: 0
 --- !u!1 &53891287582989121
@@ -1398,7 +1414,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &5999556924331560122
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1446,7 +1462,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 40
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -1509,8 +1525,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 5999556924331560122}
   jointType: 256
-  positionInputX: 0
-  positionInputY: 0
+  axis: 7
+  inputX: 0.125
+  inputY: 0.5
+  inputZ: 0.5
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 3
 --- !u!114 &707401426001475477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,7 +1613,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &761826762276747344
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1638,7 +1661,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 40
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -1701,8 +1724,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 761826762276747344}
   jointType: 2048
-  positionInputX: 0
-  positionInputY: 0
+  axis: 7
+  inputX: 0.125
+  inputY: 0.5
+  inputZ: 0.5
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 3
 --- !u!114 &1248661342824772047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2092,7 +2122,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &4372962117420971706
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2217,8 +2247,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 4372962117420971706}
   jointType: 512
-  positionInputX: 0
-  positionInputY: 0
+  axis: 1
+  inputX: 1
+  inputY: 0
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 1
 --- !u!1 &53891287582989147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,7 +2321,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &256453752644556956
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2395,8 +2432,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 256453752644556956}
   jointType: 4096
-  positionInputX: 0
-  positionInputY: 0
+  axis: 1
+  inputX: 1
+  inputY: 0
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 1
 --- !u!114 &5902170475273524052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2538,7 +2582,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &97784313334895305
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2571,22 +2615,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -119.82172
+    limit: -110
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 0
+    limit: -0.49732193
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 3
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 130
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2613,12 +2657,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 0
     positionDamper: 0
-    maximumForce: 3.4028233e+38
+    maximumForce: 1
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 0
     positionDamper: 0
-    maximumForce: 3.4028233e+38
+    maximumForce: 1
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 1000
@@ -2649,8 +2693,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 97784313334895305}
   jointType: 8
-  positionInputX: 0
-  positionInputY: 0
+  axis: 7
+  inputX: 1
+  inputY: 0.5
+  inputZ: 0.5
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 3
 --- !u!114 &6545000973415377931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2730,7 +2781,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &6293917477645807583
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2763,7 +2814,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -120.45234
+    limit: -110
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
@@ -2774,11 +2825,11 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 3
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 3
+    limit: 130
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2841,8 +2892,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 6293917477645807583}
   jointType: 64
-  positionInputX: 0
-  positionInputY: 0
+  axis: 7
+  inputX: 1
+  inputY: 0.5
+  inputZ: 0.5
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 3
 --- !u!114 &4431960368713771542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3051,7 +3109,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &8778730972726308979
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -3176,8 +3234,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 8778730972726308979}
   jointType: 16
-  positionInputX: 0
-  positionInputY: 0
+  axis: 3
+  inputX: 0.3691292
+  inputY: 0.5
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 2
 --- !u!114 &8800962554182272634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3259,7 +3324,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &906776162229952658
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -3370,8 +3435,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 906776162229952658}
   jointType: 128
-  positionInputX: 0
-  positionInputY: 0
+  axis: 3
+  inputX: 0.3691292
+  inputY: 0.5
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 2
 --- !u!114 &1533985529395084165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3828,7 +3900,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &7873081292771859761
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -3861,18 +3933,18 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -90
+    limit: -60
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 120
+    limit: 130
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 85
+    limit: 70
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
@@ -3939,8 +4011,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 7873081292771859761}
   jointType: 4
-  positionInputX: 0
-  positionInputY: 0
+  axis: 3
+  inputX: 0.31578946
+  inputY: 0.5
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 2
 --- !u!114 &969171949412658325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4020,7 +4099,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &2361223275160774853
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -4053,22 +4132,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -90
+    limit: -60
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 120
+    limit: 130
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 85
+    limit: 70
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 3
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -4131,8 +4210,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 2361223275160774853}
   jointType: 32
-  positionInputX: 0
-  positionInputY: 0
+  axis: 3
+  inputX: 0.31578946
+  inputY: 0.5
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 2
 --- !u!114 &2534469633977013317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4194,8 +4280,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.078352846, y: 1, z: 2}
-  m_Center: {x: 0.021244887, y: -0.4, z: -0.12786312}
+  m_Size: {x: 0.078352846, y: 0.12941712, z: 0.3625005}
+  m_Center: {x: 0.021245252, y: 0.035291396, z: -0.15793237}
 --- !u!54 &5112477800727621794
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4211,7 +4297,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &7714279492496524665
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -4255,7 +4341,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 10
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
@@ -4322,8 +4408,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 7714279492496524665}
   jointType: 1024
-  positionInputX: 0
-  positionInputY: 0
+  axis: 3
+  inputX: 0.45298874
+  inputY: 0.5
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 2
 --- !u!114 &7464207004547398251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4385,8 +4478,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.078352846, y: 1, z: 2}
-  m_Center: {x: 0.02124365, y: 0.44, z: -0.17453079}
+  m_Size: {x: 0.078352846, y: 0.14875187, z: 0.33488235}
+  m_Center: {x: 0.02124363, y: 0.014375402, z: -0.15775077}
 --- !u!54 &7382899192349972467
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4402,7 +4495,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!153 &3260077585493308127
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -4446,7 +4539,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 10
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
@@ -4513,8 +4606,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 3260077585493308127}
   jointType: 8192
-  positionInputX: 0
-  positionInputY: 0
+  axis: 3
+  inputX: 0.45298874
+  inputY: 0.5
+  inputZ: 0
+  control: 0
+  maxAngularVelocity: 20
+  maxAngularForce: 1000
+  velocityMeasurements: 100
+  axisCount: 2
 --- !u!114 &8004220059011679349
 MonoBehaviour:
   m_ObjectHideFlags: 0

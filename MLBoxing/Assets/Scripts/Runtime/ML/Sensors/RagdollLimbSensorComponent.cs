@@ -1,7 +1,6 @@
 using MLBoxing.Ragdoll;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.MLAgents.Sensors;
+using UnityEditor;
 using UnityEngine;
 
 namespace MLBoxing.ML.Sensors {
@@ -46,7 +45,7 @@ namespace MLBoxing.ML.Sensors {
         public void SetObservedCharacter(RagdollModel ragdoll) {
             observedRagdoll = ragdoll;
             if (sensor != null) {
-                sensor.ragdoll = ragdoll;
+                sensor.observedRagdoll = ragdoll;
             }
         }
 
@@ -58,11 +57,23 @@ namespace MLBoxing.ML.Sensors {
 
         public override ISensor CreateSensor() {
             sensor = new RagdollLimbSensor() {
-                ragdoll = observedRagdoll,
+                observedRagdoll = observedRagdoll,
                 name = gameObject.name,
+                self = observedAgent.ragdoll,
+                maxRange = observedAgent.ragdoll.height,
                 observedLimbs = observedLimbs
             };
             return new StackingSensor(sensor, stackedObservations);
+        }
+
+        private void OnDrawGizmosSelected() {
+            if (sensor == null) {
+                return;
+            }
+            foreach (var position in sensor.NormalizedPositionsSubjective()) {
+                Gizmos.color = Color.Lerp(Color.white, Color.red, position.magnitude);
+                Gizmos.DrawLine(sensor.self.root.position, sensor.self.root.position + position);
+            }
         }
 
         public override int[] GetObservationShape() {

@@ -14,6 +14,8 @@ namespace MLBoxing.ML.Sensors {
 
         public float maxRange = 5;
 
+        public Vector3 enemyPosition => SensorUtility.GetNormalizedSubjectivePosition(self, enemy.root.position, maxRange);
+
         public byte[] GetCompressedObservation() {
             Debug.LogError("This Sensor does not implement a compressed Observation");
             return null;
@@ -32,14 +34,14 @@ namespace MLBoxing.ML.Sensors {
         }
 
         public int Write(ObservationWriter writer) {
-            var deltaPosition = self.root.position - self.root.position;
-            Quaternion inverseRotation = Quaternion.Inverse(self.root.transform.rotation);
-            var subjectivePosition = inverseRotation * deltaPosition;
-            var clampedPosition = Vector3.ClampMagnitude(subjectivePosition, maxRange);
-            var normalizedPosition = clampedPosition / maxRange;
-            writer.Add(normalizedPosition);
+            if (enemy) {
+                writer.Add(enemyPosition);
+            } else {
+                writer.Add(Vector3.zero);
+            }
             return 3;
         }
+
 
         //Inherited
         public void Reset() { }

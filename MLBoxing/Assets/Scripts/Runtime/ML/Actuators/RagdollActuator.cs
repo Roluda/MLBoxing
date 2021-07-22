@@ -17,8 +17,15 @@ namespace MLBoxing.ML.Actuators {
         public void OnActionReceived(ActionBuffers actionBuffers) {
             int index = 0;
             foreach(var joint in actuatedRagdoll.FilterJoints(actuatedJoints)) {
-                joint.positionInputX = actionBuffers.ContinuousActions[index++];
-                joint.positionInputY = actionBuffers.ContinuousActions[index++];
+                if (joint.axis.HasFlag(JointAxis.X)) {
+                    joint.inputX = actionBuffers.ContinuousActions[index++];
+                }
+                if (joint.axis.HasFlag(JointAxis.Y)) {
+                    joint.inputY = actionBuffers.ContinuousActions[index++];
+                }
+                if (joint.axis.HasFlag(JointAxis.Z)) {
+                    joint.inputZ = actionBuffers.ContinuousActions[index++];
+                }
             }
         }
 
@@ -29,7 +36,7 @@ namespace MLBoxing.ML.Actuators {
         }
 
         public static ActionSpec GetActionSpec(RagdollModel ragdoll, JointType joints) {
-            return new ActionSpec { NumContinuousActions = ragdoll.FilterJoints(joints).Count() * 2};
+            return new ActionSpec { NumContinuousActions = ragdoll.FilterJoints(joints).Sum(joint => joint.axisCount)};
         }
     }
 }

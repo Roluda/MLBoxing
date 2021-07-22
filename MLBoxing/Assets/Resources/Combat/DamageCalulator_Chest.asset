@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DamageCalulator_Chest
   m_EditorClassIdentifier: 
   impulseThreshold: 5
-  maximumImpuse: 30
-  baseDamage: 1
-  maximumBonusDamage: 1
+  maximumImpuse: 100
+  baseDamage: 0
+  maximumBonusDamage: 10
   bonusOverImpulse:
     serializedVersion: 2
     m_Curve:

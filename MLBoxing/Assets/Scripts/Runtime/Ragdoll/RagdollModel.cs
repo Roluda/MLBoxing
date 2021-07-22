@@ -10,9 +10,9 @@ namespace MLBoxing.Ragdoll {
         [SerializeField]
         public Rigidbody root = default;
         [SerializeField]
-        public float height = default;
+        public float height = 1.7f;
         [SerializeField]
-        public float span = default;
+        public float span = 1.7f;
         [SerializeField]
         RagdollLimb[] limbs = default;
         [SerializeField]
@@ -23,6 +23,11 @@ namespace MLBoxing.Ragdoll {
         Hitbox[] hitboxes = default;
         [SerializeField, EnumFlags]
         RigidbodyConstraints rootConstraints = default;
+
+        [SerializeField]
+        bool applyControlTypeToAllJoints = true;
+        [SerializeField]
+        ControlType controlType = ControlType.PositionControl;
 
         public IEnumerable<RagdollLimb> allLimbs => limbs.AsEnumerable();
         public IEnumerable<RagdollJoint> allJoints => joints.AsEnumerable();
@@ -49,6 +54,11 @@ namespace MLBoxing.Ragdoll {
             hitboxes = GetComponentsInChildren<Hitbox>();
             root = FilterLimbs(LimbType.Hips).First().limb;
             root.constraints = rootConstraints;
+            if (applyControlTypeToAllJoints) {
+                foreach( var joint in joints) {
+                    joint.EnterControlMode(controlType);
+                }
+            }
         }
 
         private void Awake() {
@@ -63,6 +73,5 @@ namespace MLBoxing.Ragdoll {
         }
         public float totalDamageTaken;
         public float totalDamageDealt;
-
     }
 }

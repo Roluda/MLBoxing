@@ -112,5 +112,13 @@ namespace MLBoxing.ML {
             occupiedSpawnPoints.Add(randomSpawn);
             return randomSpawn;
         }
+
+
+        private void OnTriggerExit(Collider other) {
+            var agent = other.GetComponentInParent<ModularAgent>();
+            if (agent) {
+                agent.Terminate();
+            }
+        }
     }
 }

@@ -56,6 +56,11 @@ namespace MLBoxing.UI {
             CheckMouseInput();
         }
 
+        public void Write(bool write) {
+            mode = write ? Mode.Write : Mode.Read;
+            currentSliders.ForEach(slider => slider.read = mode == Mode.Read);
+        }
+
         void CheckMouseInput() {
             if (Input.GetMouseButtonDown(0)) {
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hitInfo)) {

@@ -13,6 +13,8 @@ namespace MLBoxing.UI {
         [SerializeField]
         Slider sliderY = default;
         [SerializeField]
+        Slider sliderZ = default;
+        [SerializeField]
         TMP_Text labelObject = default;
 
         public RagdollJoint attachedJoint = default;
@@ -27,17 +29,23 @@ namespace MLBoxing.UI {
         }
 
         private void Start() {
-            sliderX.value = attachedJoint.positionInputX;
-            sliderY.value = attachedJoint.positionInputY;
+            sliderX.value = attachedJoint.inputX;
+            sliderY.value = attachedJoint.inputY;
+            sliderZ.value = attachedJoint.inputZ;
+            sliderX.gameObject.SetActive(attachedJoint.axis.HasFlag(JointAxis.X));
+            sliderY.gameObject.SetActive(attachedJoint.axis.HasFlag(JointAxis.Y));
+            sliderZ.gameObject.SetActive(attachedJoint.axis.HasFlag(JointAxis.Z));
         }
 
         private void FixedUpdate() {
             if (read) {
-                sliderX.value = attachedJoint.positionInputX;
-                sliderY.value = attachedJoint.positionInputY;
+                sliderX.value = attachedJoint.inputX;
+                sliderY.value = attachedJoint.inputY;
+                sliderZ.value = attachedJoint.inputZ;
             } else {
-                attachedJoint.positionInputX = sliderX.value;
-                attachedJoint.positionInputY = sliderY.value;
+                attachedJoint.inputX = sliderX.value;
+                attachedJoint.inputY = sliderY.value;
+                attachedJoint.inputZ = sliderZ.value;
             }
         }
     }
