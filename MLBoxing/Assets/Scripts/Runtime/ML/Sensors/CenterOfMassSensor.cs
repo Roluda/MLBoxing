@@ -39,7 +39,8 @@ namespace MLBoxing.ML.Sensors {
             if (!ragdoll) {
                 return Vector3.zero;
             }
-            return ragdoll.allLimbs.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allLimbs.Sum(rigid => rigid.mass);
+            return ragdoll.allArticulations.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allArticulations.Sum(rigid => rigid.mass);
+            //return ragdoll.root.worldCenterOfMass;
         }
 
         //Inherited

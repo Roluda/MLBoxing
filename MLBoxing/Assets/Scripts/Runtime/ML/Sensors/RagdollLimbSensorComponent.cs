@@ -72,7 +72,7 @@ namespace MLBoxing.ML.Sensors {
             }
             foreach (var position in sensor.NormalizedPositionsSubjective()) {
                 Gizmos.color = Color.Lerp(Color.white, Color.red, position.magnitude);
-                Gizmos.DrawLine(sensor.self.root.position, sensor.self.root.position + position);
+                Gizmos.DrawLine(sensor.self.rootPosition, sensor.self.rootPosition + position);
             }
         }
 

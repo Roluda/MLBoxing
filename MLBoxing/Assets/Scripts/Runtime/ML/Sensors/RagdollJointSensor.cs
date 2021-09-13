@@ -42,20 +42,20 @@ namespace MLBoxing.ML.Sensors {
 
         public IEnumerable<float> GetAllCurrentJointRotationsNormalized() {
             foreach(var joint in ragdoll.FilterJoints(observedJoints)) {
-                if (joint.axis.HasFlag(JointAxis.X)) {
-                    yield return joint.GetNormalizedJointRotationX();
+                if (joint.dof.HasFlag(DOF.X)) {
+                    yield return joint.GetNormalizedJointRotation(DOF.X);
                 }
-                if (joint.axis.HasFlag(JointAxis.Y)) {
-                    yield return joint.GetNormalizedJointRotationY();
+                if (joint.dof.HasFlag(DOF.Y)) {
+                    yield return joint.GetNormalizedJointRotation(DOF.Y);
                 }
-                if (joint.axis.HasFlag(JointAxis.Z)) {
-                    yield return joint.GetNormalizedJointRotationZ();
+                if (joint.dof.HasFlag(DOF.Z)) {
+                    yield return joint.GetNormalizedJointRotation(DOF.Z);
                 }
             }
         }
 
         public static int[] GetShape(RagdollModel ragdoll, JointType joints) {
-            return new int[] { ragdoll.FilterJoints(joints).Sum(joint => joint.axisCount)};
+            return new int[] { ragdoll.FilterJoints(joints).Sum(joint => joint.dofCount)};
         }
     }
 }

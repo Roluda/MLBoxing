@@ -8,54 +8,51 @@ namespace MLBoxing.Ragdoll {
     public class RagdollModel : MonoBehaviour {
         [Header("Configuration")]
         [SerializeField]
-        public Rigidbody root = default;
+        public ArticulationBody root;
         [SerializeField]
         public float height = 1.7f;
         [SerializeField]
         public float span = 1.7f;
         [SerializeField]
-        RagdollLimb[] limbs = default;
-        [SerializeField]
-        RagdollJoint[] joints = default;
+        ArticulationController[] articulations;
         [SerializeField]
         Hurtbox[] hurtboxes = default;
         [SerializeField]
         Hitbox[] hitboxes = default;
-        [SerializeField, EnumFlags]
-        RigidbodyConstraints rootConstraints = default;
 
         [SerializeField]
         bool applyControlTypeToAllJoints = true;
         [SerializeField]
         ControlType controlType = ControlType.PositionControl;
 
-        public IEnumerable<RagdollLimb> allLimbs => limbs.AsEnumerable();
-        public IEnumerable<RagdollJoint> allJoints => joints.AsEnumerable();
+        public Vector3 rootPosition => root.worldCenterOfMass;
+
+        public IEnumerable<ArticulationController> allArticulations => articulations.AsEnumerable();
         public IEnumerable<Hitbox> allHitboxes => hitboxes.AsEnumerable();
         public IEnumerable<Hurtbox> allHurtboxes => hurtboxes.AsEnumerable();
 
-        public IEnumerable<RagdollLimb> FilterLimbs(LimbType flag) {
-            return allLimbs.Where(limb => flag.HasFlag(limb.limbType));
+        public IEnumerable<ArticulationController> FilterLimbs(LimbType flag) {
+            return allArticulations.Where(limb => flag.HasFlag(limb.limbType));
         }
-        public IEnumerable<RagdollJoint> FilterJoints(JointType flag) {
-            return allJoints.Where(joint => flag.HasFlag(joint.jointType));
+        public IEnumerable<ArticulationController> FilterJoints(JointType flag) {
+            return allArticulations.Where(joint => flag.HasFlag(joint.jointType));
         }
-        public RagdollLimb GetLimb(LimbType type) {
+        public ArticulationController GetLimb(LimbType type) {
             return FilterLimbs(type).First();
         }
-        public RagdollJoint GetJoint(JointType type) {
+        public ArticulationController GetJoint(JointType type) {
             return FilterJoints(type).First();
         }
 
+        public float totalDamageTaken;
+        public float totalDamageDealt;
+
         private void OnValidate() {
-            limbs = GetComponentsInChildren<RagdollLimb>();
-            joints = GetComponentsInChildren<RagdollJoint>();
+            articulations = GetComponentsInChildren<ArticulationController>();
             hurtboxes = GetComponentsInChildren<Hurtbox>();
             hitboxes = GetComponentsInChildren<Hitbox>();
-            root = FilterLimbs(LimbType.Hips).First().limb;
-            root.constraints = rootConstraints;
             if (applyControlTypeToAllJoints) {
-                foreach( var joint in joints) {
+                foreach( var joint in allArticulations) {
                     joint.EnterControlMode(controlType);
                 }
             }
@@ -68,10 +65,8 @@ namespace MLBoxing.Ragdoll {
             foreach(var hurtbox in allHurtboxes) {
                 hurtbox.onHurt += (damage) => totalDamageTaken += damage;
             }
-            height = (GetLimb(LimbType.Head).limb.position - GetLimb(LimbType.LeftFoot).limb.position).magnitude;
-            span = (GetLimb(LimbType.LeftPalm).limb.position - GetLimb(LimbType.RightPalm).limb.position).magnitude;
+            height = (GetLimb(LimbType.Head).position - GetLimb(LimbType.LeftFoot).position).magnitude;
+            span = (GetLimb(LimbType.LeftPalm).position - GetLimb(LimbType.RightPalm).position).magnitude;
         }
-        public float totalDamageTaken;
-        public float totalDamageDealt;
     }
 }

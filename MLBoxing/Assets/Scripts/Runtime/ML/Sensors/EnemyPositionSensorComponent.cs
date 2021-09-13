@@ -63,7 +63,7 @@ namespace MLBoxing.ML.Sensors {
             }
             float normalizedValue = sensor.enemyPosition.magnitude;
             Gizmos.color = Color.Lerp(Color.white, Color.green, normalizedValue);
-            Gizmos.DrawLine(sensor.self.root.position, sensor.self.root.position + sensor.enemyPosition);
+            Gizmos.DrawLine(sensor.self.rootPosition, sensor.self.rootPosition + sensor.enemyPosition);
         }
 
         public override int[] GetObservationShape() {

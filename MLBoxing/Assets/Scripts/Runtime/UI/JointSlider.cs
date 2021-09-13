@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 namespace MLBoxing.UI {
     public class JointSlider : MonoBehaviour {
-
-
-
         [SerializeField]
         Slider sliderX = default;
         [SerializeField]
@@ -17,7 +14,7 @@ namespace MLBoxing.UI {
         [SerializeField]
         TMP_Text labelObject = default;
 
-        public RagdollJoint attachedJoint = default;
+        public ArticulationController observedArticulation = default;
         public bool read = true;
 
         public string label {
@@ -29,23 +26,23 @@ namespace MLBoxing.UI {
         }
 
         private void Start() {
-            sliderX.value = attachedJoint.inputX;
-            sliderY.value = attachedJoint.inputY;
-            sliderZ.value = attachedJoint.inputZ;
-            sliderX.gameObject.SetActive(attachedJoint.axis.HasFlag(JointAxis.X));
-            sliderY.gameObject.SetActive(attachedJoint.axis.HasFlag(JointAxis.Y));
-            sliderZ.gameObject.SetActive(attachedJoint.axis.HasFlag(JointAxis.Z));
+            sliderX.value = observedArticulation.inputX;
+            sliderY.value = observedArticulation.inputY;
+            sliderZ.value = observedArticulation.inputZ;
+            sliderX.gameObject.SetActive(observedArticulation.dof.HasFlag(DOF.X));
+            sliderY.gameObject.SetActive(observedArticulation.dof.HasFlag(DOF.Y));
+            sliderZ.gameObject.SetActive(observedArticulation.dof.HasFlag(DOF.Z));
         }
 
         private void FixedUpdate() {
             if (read) {
-                sliderX.value = attachedJoint.inputX;
-                sliderY.value = attachedJoint.inputY;
-                sliderZ.value = attachedJoint.inputZ;
+                sliderX.value = observedArticulation.inputX;
+                sliderY.value = observedArticulation.inputY;
+                sliderZ.value = observedArticulation.inputZ;
             } else {
-                attachedJoint.inputX = sliderX.value;
-                attachedJoint.inputY = sliderY.value;
-                attachedJoint.inputZ = sliderZ.value;
+                observedArticulation.inputX = sliderX.value;
+                observedArticulation.inputY = sliderY.value;
+                observedArticulation.inputZ = sliderZ.value;
             }
         }
     }

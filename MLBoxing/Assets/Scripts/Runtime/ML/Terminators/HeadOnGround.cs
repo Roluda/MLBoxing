@@ -27,7 +27,7 @@ namespace MLBoxing.ML.Terminators {
         }
 
         float HeadHeight(ModularAgent agent) {
-            return agent.ragdoll.FilterLimbs(LimbType.Head).First().position.y;
+            return agent.ragdoll.GetLimb(LimbType.Head).position.y;
         }
     }
 }

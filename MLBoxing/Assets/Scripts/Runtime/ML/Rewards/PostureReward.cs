@@ -15,8 +15,8 @@ namespace MLBoxing.ML.Rewards {
         }
 
         private void CalculatePostureRewards(ModularAgent agent) {
-            float headDistance = DistanceToLine(agent.ragdoll.root.position, agent.ragdoll.GetLimb(LimbType.Head).position);
-            float chestDistance = DistanceToLine(agent.ragdoll.root.position, agent.ragdoll.GetLimb(LimbType.Torso).position);
+            float headDistance = DistanceToLine(agent.ragdoll.rootPosition, agent.ragdoll.GetLimb(LimbType.Head).position);
+            float chestDistance = DistanceToLine(agent.ragdoll.rootPosition, agent.ragdoll.GetLimb(LimbType.Torso).position);
             if (headDistanceToLineMultiplier != 0) {
                 agent.AddReward(headDistance * headDistanceToLineMultiplier, nameof(headDistanceToLineMultiplier), asScore);
             }

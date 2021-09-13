@@ -6,7 +6,7 @@ using MLBoxing.Ragdoll;
 namespace MLBoxing.ML {
     public class SensorUtility {
         public static Vector3 GetSubjectivePosition(RagdollModel context, Vector3 positionWorldSpace) {
-            var positionDelta = positionWorldSpace - context.root.position;
+            var positionDelta = positionWorldSpace - context.rootPosition;
             var inverseRotation = Quaternion.Inverse(context.root.transform.rotation);
             return inverseRotation * positionDelta;
         }

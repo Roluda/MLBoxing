@@ -10,7 +10,7 @@ namespace MLBoxing.Ragdoll {
         [SerializeField]
         public JointType jointType = default;
         [SerializeField]
-        public JointAxis axis = default;
+        public DOF axis = default;
         [SerializeField, Range(0, 1)]
         public float inputX = 0;
         [SerializeField, Range(0, 1)]
@@ -27,13 +27,19 @@ namespace MLBoxing.Ragdoll {
         int velocityMeasurements = 100;
 
         Quaternion lastRotation;
+
         Quaternion startRotation;
+
+        [SerializeField]
+        public Vector3 jointRotation;
+
 
         public int axisCount = 0;
 
         Queue<Vector3> velocityMeasures = new Queue<Vector3>();
 
         public float currentTorque => joint.currentTorque.sqrMagnitude;
+
 
 
         private void Start() {
@@ -45,18 +51,22 @@ namespace MLBoxing.Ragdoll {
         */
 
         private void OnValidate() {
+            var right = joint.axis;
+            var forward = Vector3.Cross(joint.axis, joint.secondaryAxis).normalized;
+            var up = Vector3.Cross(forward, right).normalized;
+            jointRotation = Quaternion.LookRotation(joint.axis, joint.secondaryAxis).eulerAngles;
             if (!joint) {
                 joint = GetComponent<ConfigurableJoint>();
             }
             axis = 0;
             if(joint.lowAngularXLimit.limit != 0 || joint.highAngularXLimit.limit != 0) {
-                axis |= JointAxis.X;
+                axis |= DOF.X;
             }
             if(joint.angularYLimit.limit > 0) {
-                axis |= JointAxis.Y;
+                axis |= DOF.Y;
             }
             if(joint.angularZLimit.limit > 0) {
-                axis |= JointAxis.Z;
+                axis |= DOF.Z;
             }
             axisCount = GetSetBitCount((int)axis);
         }
@@ -145,13 +155,6 @@ namespace MLBoxing.Ragdoll {
             float velocityY = Mathf.Lerp(-maxAngularVelocity, maxAngularVelocity, inputY);
             float velocityZ = Mathf.Lerp(-maxAngularVelocity, maxAngularVelocity, inputZ);
             joint.targetAngularVelocity = new Vector3(velocityX, velocityY, velocityZ);
-        }
-
-        void SnapTargetRotation() {
-            float snapX = inputX > 0.5 ? joint.lowAngularXLimit.limit : joint.highAngularXLimit.limit;
-            float snapY = inputY > 0.5 ? -joint.angularYLimit.limit : joint.angularYLimit.limit;
-            float snapZ = inputZ > 0.5 ? -joint.angularZLimit.limit : joint.angularZLimit.limit;
-            joint.targetRotation = Quaternion.Euler(snapX, snapY, snapZ);
         }
 
         void AccelerateJoint() {

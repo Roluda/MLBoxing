@@ -73,7 +73,8 @@ namespace MLBoxing.ML.Sensors {
             }
             centerOfMassDebug = sensor.centerOfMass;
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(sensor.self.root.position + sensor.centerOfMass, 0.1f);
+            Gizmos.DrawWireSphere(sensor.self.root.transform.position + sensor.centerOfMass, 0.1f);
+            Gizmos.DrawWireSphere(sensor.self.root.worldCenterOfMass, 0.1f);
         }
 
         public override int[] GetObservationShape() {

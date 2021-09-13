@@ -43,7 +43,7 @@ namespace MLBoxing.UI {
             if (observedRagdoll) {
                 foreach (var joint in observedRagdoll.FilterJoints(manipulatedJoints)) {
                     var newSlider = Instantiate(sliderPrefab, spawnContext);
-                    newSlider.attachedJoint = joint;
+                    newSlider.observedArticulation = joint;
                     newSlider.read = mode == Mode.Read;
                     newSlider.label = joint.jointType.ToString();
                     currentSliders.Add(newSlider);

@@ -14,7 +14,7 @@ namespace MLBoxing.ML.Sensors {
 
         public float maxRange = 5;
 
-        public Vector3 enemyPosition => SensorUtility.GetNormalizedSubjectivePosition(self, enemy.root.position, maxRange);
+        public Vector3 enemyPosition => SensorUtility.GetNormalizedSubjectivePosition(self, enemy.rootPosition, maxRange);
 
         public byte[] GetCompressedObservation() {
             Debug.LogError("This Sensor does not implement a compressed Observation");
