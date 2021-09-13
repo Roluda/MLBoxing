@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e91c6037ecbbec4889a9baf02f2442a, type: 3}
   m_Name: DamageCalulator_Chest
   m_EditorClassIdentifier: 
-  impulseThreshold: 5
-  maximumImpuse: 100
-  baseDamage: 0
-  maximumBonusDamage: 10
+  impulseThreshold: 50
+  maximumImpuse: 1000
+  baseDamage: 5
+  maximumBonusDamage: 100
   bonusOverImpulse:
     serializedVersion: 2
     m_Curve:

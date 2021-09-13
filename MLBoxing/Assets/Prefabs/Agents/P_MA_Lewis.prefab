@@ -392,6 +392,7 @@ MonoBehaviour:
   stackedObservations: 1
   self: {fileID: 3933610771221868390}
   enemy: {fileID: 0}
+  maxRange: 5
 --- !u!1 &7552044154768302285
 GameObject:
   m_ObjectHideFlags: 0

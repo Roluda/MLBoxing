@@ -33,6 +33,16 @@ namespace MLBoxing.Ragdoll {
 
         Queue<Vector3> velocityMeasures = new Queue<Vector3>();
 
+        public float currentTorque => joint.currentTorque.sqrMagnitude;
+
+
+        private void Start() {
+            EnterControlMode(control);
+        }
+
+        /*
+        target Position = ((force + PositionDamper * Velocity) / PositionSpring) + position
+        */
 
         private void OnValidate() {
             if (!joint) {
@@ -78,7 +88,8 @@ namespace MLBoxing.Ragdoll {
                     inputY = GetNormalizedJointRotationY();
                     inputZ = GetNormalizedJointRotationZ();
                     slerpDrive.positionSpring = maxAngularForce;
-                    slerpDrive.positionDamper = maxAngularVelocity;
+                    slerpDrive.positionDamper = 0;
+                    joint.slerpDrive = slerpDrive;
                     break;
                 case ControlType.VelocityControl:
                     inputX = 0.5f;
@@ -134,6 +145,13 @@ namespace MLBoxing.Ragdoll {
             float velocityY = Mathf.Lerp(-maxAngularVelocity, maxAngularVelocity, inputY);
             float velocityZ = Mathf.Lerp(-maxAngularVelocity, maxAngularVelocity, inputZ);
             joint.targetAngularVelocity = new Vector3(velocityX, velocityY, velocityZ);
+        }
+
+        void SnapTargetRotation() {
+            float snapX = inputX > 0.5 ? joint.lowAngularXLimit.limit : joint.highAngularXLimit.limit;
+            float snapY = inputY > 0.5 ? -joint.angularYLimit.limit : joint.angularYLimit.limit;
+            float snapZ = inputZ > 0.5 ? -joint.angularZLimit.limit : joint.angularZLimit.limit;
+            joint.targetRotation = Quaternion.Euler(snapX, snapY, snapZ);
         }
 
         void AccelerateJoint() {

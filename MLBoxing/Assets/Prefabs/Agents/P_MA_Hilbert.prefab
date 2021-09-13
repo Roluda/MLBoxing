@@ -112,7 +112,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: bf0143ab5380a6f4ea5657033fd89179, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Hilbert
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 10
   TakeActionsBetweenDecisions: 0
 --- !u!1 &1055802992102612874
 GameObject:
@@ -200,7 +200,7 @@ MonoBehaviour:
   targetCharacter: 1
   stackedObservations: 1
   observedRagdoll: {fileID: 3933610771221868390}
-  centerOfMassDebug: {x: -0.049785938, y: -0.00095715135, z: -0.0067542745}
+  centerOfMassDebug: {x: -0.05537932, y: -0.001064686, z: -0.0075131077}
 --- !u!1 &4268037735231167287
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
   targetCharacter: 0
   stackedObservations: 1
   observedRagdoll: {fileID: 3933610771221868390}
-  centerOfMassDebug: {x: -0.049785938, y: -0.00095715135, z: -0.0067542745}
+  centerOfMassDebug: {x: -0.05537932, y: -0.001064686, z: -0.0075131077}
 --- !u!1001 &5174574273565853224
 PrefabInstance:
   m_ObjectHideFlags: 0

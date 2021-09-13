@@ -919,12 +919,40 @@ PrefabInstance:
       value: P_Ragdoll_Female
       objectReference: {fileID: 0}
     - target: {fileID: 74719068032060696, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 74719068032060696, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.011051477
+      objectReference: {fileID: 0}
+    - target: {fileID: 74719068032060696, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 74719068032060696, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 97784313334895305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 97784313334895305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.000000007450581
+      objectReference: {fileID: 0}
+    - target: {fileID: 97784313334895305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 97784313334895305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 256453752644556956, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 256453752644556956, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -934,9 +962,41 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 256453752644556956, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 256453752644556956, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761826762276747344, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 761826762276747344, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.00513411
+      objectReference: {fileID: 0}
+    - target: {fileID: 761826762276747344, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 761826762276747344, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 836084609995563706, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 836084609995563706, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 906776162229952658, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 906776162229952658, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -946,9 +1006,73 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.00000007741619
       objectReference: {fileID: 0}
+    - target: {fileID: 906776162229952658, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 906776162229952658, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513992378083420571, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513992378083420571, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117896570444504039, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117896570444504039, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117896570444504039, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361223275160774853, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2361223275160774853, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.025283659
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361223275160774853, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361223275160774853, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617060057807808446, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617060057807808446, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617060057807808446, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759373079502255725, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759373079502255725, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260077585493308127, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3260077585493308127, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -958,6 +1082,38 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.06699996
       objectReference: {fileID: 0}
+    - target: {fileID: 3260077585493308127, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260077585493308127, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490469904258596896, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490469904258596896, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490469904258596896, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910602763780000116, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910602763780000116, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372962117420971706, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4372962117420971706, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.000000024563633
@@ -966,21 +1122,173 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.0000000018626454
       objectReference: {fileID: 0}
+    - target: {fileID: 4372962117420971706, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372962117420971706, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722921612769090785, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722921612769090785, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722921612769090785, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564323394671667355, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564323394671667355, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604296946654117902, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604296946654117902, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputY
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604296946654117902, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604296946654117902, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931904581237242295, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931904581237242295, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931904581237242295, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999556924331560122, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5999556924331560122, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.00513411
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999556924331560122, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999556924331560122, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261251673004742289, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261251673004742289, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261251673004742289, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293917477645807583, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6293917477645807583, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.000000014901161
       objectReference: {fileID: 0}
+    - target: {fileID: 6293917477645807583, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293917477645807583, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714279492496524665, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7714279492496524665, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.06899999
       objectReference: {fileID: 0}
+    - target: {fileID: 7714279492496524665, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714279492496524665, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873081292771859761, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7873081292771859761, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.025283657
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873081292771859761, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873081292771859761, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077557459642662375, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077557459642662375, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077557459642662375, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167622917493942606, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: controlType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542268932590699305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542268932590699305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputY
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542268932590699305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: inputZ
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542268932590699305, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778730972726308979, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_ProjectionMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8778730972726308979, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -989,6 +1297,18 @@ PrefabInstance:
     - target: {fileID: 8778730972726308979, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.0000002443558
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778730972726308979, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778730972726308979, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127166267113003309, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
+      propertyPath: control
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 171a1b791d48a4a49b38eede567e8675, type: 3}
@@ -1289,7 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5b908932b9fc34391f959447da4d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 10, y: 10}
+  gridSize: {x: 1, y: 1}
   gridSpace: 15
   arenas:
   - {fileID: 4506786858170228650, guid: 1c65f89ef351a744a80176b711ad2edc, type: 3}

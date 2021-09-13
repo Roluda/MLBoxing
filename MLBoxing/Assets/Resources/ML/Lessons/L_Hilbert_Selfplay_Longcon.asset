@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8953f9c04f987648a4a6307012c9a55, type: 3}
-  m_Name: L_Hilbert_Selfplay_Fighting
+  m_Name: L_Hilbert_Selfplay_Longcon
   m_EditorClassIdentifier: 
   student: {fileID: 228707360901564577, guid: 48397fe94e5e4a148987055fbe715c7c, type: 3}
   rewards:
-  - {fileID: 11400000, guid: 8245397664464a944abe289c6282cddb, type: 2}
-  - {fileID: 11400000, guid: c7b9b8e217fceda4eab20898c84f88ca, type: 2}
-  - {fileID: 11400000, guid: cffdff96781da6947b4e414d0ba19c29, type: 2}
-  - {fileID: 11400000, guid: 9f659c8f4ade93747927076d23fd5ab2, type: 2}
+  - {fileID: 11400000, guid: 2afd125bbeab3974e86ccd12e7d365ee, type: 2}
+  - {fileID: 11400000, guid: 8ae099ab7a5c2114f9b5d6397a2dd4ae, type: 2}
+  - {fileID: 11400000, guid: 4ad652f1ec434a64685715cebb4f5b11, type: 2}
+  - {fileID: 11400000, guid: 4fc70b10f8479cc4db19a3e86a8c447f, type: 2}
+  - {fileID: 11400000, guid: 0d6f87b41bba00842ba5ac295c29bc5c, type: 2}
   terminaters: []
   episodeLength: 600
   selfPlay: 1
