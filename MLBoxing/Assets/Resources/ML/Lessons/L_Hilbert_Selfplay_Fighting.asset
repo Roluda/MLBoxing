@@ -18,7 +18,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7b9b8e217fceda4eab20898c84f88ca, type: 2}
   - {fileID: 11400000, guid: cffdff96781da6947b4e414d0ba19c29, type: 2}
   - {fileID: 11400000, guid: 9f659c8f4ade93747927076d23fd5ab2, type: 2}
-  terminaters: []
+  terminaters:
+  - {fileID: 11400000, guid: 853b3a0b44e7f054c865bbee1e04e185, type: 2}
   episodeLength: 600
   selfPlay: 1
   mirrorOpponent: 0

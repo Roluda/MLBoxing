@@ -37,7 +37,7 @@ namespace MLBoxing.ML {
         private void CheckLessonParameter() {
             if(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault(lessonParameter, 0)) > currentLesson) {
                 currentLesson++;
-                currentArenas.ForEach(arena => arena.SetLesson(lessons[currentLesson]));
+                currentArenas.ForEach(arena => arena.StartLesson(lessons[currentLesson]));
             }
         }
 
@@ -46,7 +46,7 @@ namespace MLBoxing.ML {
                 for (int y = 0; y < gridSize.y; y++) {
                     var position = new Vector3(x, 0, y) * gridSpace;
                     var arena = Instantiate(arenas[UnityEngine.Random.Range(0, arenas.Length)], position, Quaternion.identity, transform);
-                    arena.SetLesson(lessons[currentLesson]);
+                    arena.StartLesson(lessons[currentLesson]);
                     currentArenas.Add(arena);
                 }
             }

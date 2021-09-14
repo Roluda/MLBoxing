@@ -47,8 +47,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2579462, y: 0.3296217, z: 0.26029283}
-  m_Center: {x: -0.12897304, y: 0.000000014901161, z: -0.019147545}
+  m_Size: {x: 0.31197885, y: 0.29528522, z: 0.16003878}
+  m_Center: {x: -0.15598908, y: 0, z: 0}
 --- !u!114 &1220284284226211226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,8 +72,8 @@ ArticulationBody:
   m_GameObject: {fileID: 53891287582988949}
   m_Enabled: 1
   m_Mass: 10
-  m_ParentAnchorPosition: {x: -0.34354436, y: 0.000000059604645, z: 0.12121866}
-  m_ParentAnchorRotation: {x: -0.06120759, y: 0.0000000055879354, z: 0.998125, w: 0}
+  m_ParentAnchorPosition: {x: -0.32998186, y: 0.000000029802322, z: 0.0110514825}
+  m_ParentAnchorRotation: {x: -0.06120759, y: 0.000000008263404, z: 0.998125, w: -0.00000004362943}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_ComputeParentAnchor: 1
@@ -88,7 +88,7 @@ ArticulationBody:
     lowerLimit: -40
     upperLimit: 40
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -96,7 +96,7 @@ ArticulationBody:
     lowerLimit: -15
     upperLimit: 30
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -104,7 +104,7 @@ ArticulationBody:
     lowerLimit: -15
     upperLimit: 15
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -125,22 +125,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 7173996802099909406}
   limbType: 2
   jointType: 2
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: -1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: -1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 7173996802099909406}
 --- !u!1 &53891287582989001
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,8 +215,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32998186, y: 0.3296217, z: 0.291453}
-  m_Center: {x: -0.16499093, y: 0.000000044703484, z: -0.020212963}
+  m_Size: {x: 0.32141024, y: 0.3296217, z: 0.15834948}
+  m_Center: {x: -0.16070509, y: 0.000000044703484, z: -0.001535773}
 --- !u!171741748 &1204794309013425735
 ArticulationBody:
   m_ObjectHideFlags: 0
@@ -233,7 +229,7 @@ ArticulationBody:
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
-  m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_AnchorRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_ComputeParentAnchor: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
@@ -246,7 +242,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -254,7 +250,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -262,7 +258,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -283,22 +279,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 1204794309013425735}
   limbType: 4
   jointType: 0
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 0
+  primaryAxis: {x: 0, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 0, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: 0, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 0, z: 0}
-  currentTorque: 0
-  useAxis: 0
+  articulation: {fileID: 1204794309013425735}
 --- !u!1 &53891287582989015
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,10 +393,10 @@ ArticulationBody:
   m_GameObject: {fileID: 53891287582989035}
   m_Enabled: 1
   m_Mass: 3.75
-  m_ParentAnchorPosition: {x: -0.4105754, y: 0.008675252, z: 0.0319328}
-  m_ParentAnchorRotation: {x: 0.07571149, y: -0.00052220165, z: 0.9971298, w: 0.00003960619}
+  m_ParentAnchorPosition: {x: -0.41591376, y: 0.000000034630915, z: 0.03209405}
+  m_ParentAnchorRotation: {x: 0.075711496, y: -0.000000009828713, z: 0.9971299, w: -0.000000043527724}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
-  m_AnchorRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_AnchorRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_ComputeParentAnchor: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
@@ -417,7 +409,7 @@ ArticulationBody:
     lowerLimit: -60
     upperLimit: 60
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -425,7 +417,7 @@ ArticulationBody:
     lowerLimit: -50
     upperLimit: 50
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -433,7 +425,7 @@ ArticulationBody:
     lowerLimit: -30
     upperLimit: 30
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -454,22 +446,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 1364735299896474871}
   limbType: 1
   jointType: 1
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: -1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0.5
   inputY: 0.5
   inputZ: 0.5
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: -1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 1364735299896474871}
 --- !u!1 &53891287582989057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,8 +1219,7 @@ MonoBehaviour:
   hitboxes:
   - {fileID: 8800962554182272634}
   - {fileID: 2997457770966705154}
-  applyControlTypeToAllJoints: 1
-  controlType: 0
+  solverIterations: 12
   totalDamageTaken: 0
   totalDamageDealt: 0
 --- !u!1 &53891287582989121
@@ -1293,9 +1280,9 @@ ArticulationBody:
   m_Enabled: 1
   m_Mass: 5.625
   m_ParentAnchorPosition: {x: -0.06463122, y: -0.07962748, z: 0.005134121}
-  m_ParentAnchorRotation: {x: 0.9952123, y: -0.024998844, z: 0.01038662, w: 0.09391311}
+  m_ParentAnchorRotation: {x: 0.9952123, y: -0.024998887, z: 0.010386623, w: 0.09391311}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
-  m_AnchorRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_AnchorRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_ComputeParentAnchor: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
@@ -1308,7 +1295,7 @@ ArticulationBody:
     lowerLimit: -40
     upperLimit: 40
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1316,7 +1303,7 @@ ArticulationBody:
     lowerLimit: -20
     upperLimit: 140
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1324,7 +1311,7 @@ ArticulationBody:
     lowerLimit: -40
     upperLimit: 40
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1345,22 +1332,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 1726564779140051297}
   limbType: 512
   jointType: 256
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: -1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0.232
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: -1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 1726564779140051297}
 --- !u!1 &53891287582989123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,9 +1402,9 @@ ArticulationBody:
   m_Enabled: 1
   m_Mass: 5.625
   m_ParentAnchorPosition: {x: -0.06463121, y: 0.07962749, z: 0.005134121}
-  m_ParentAnchorRotation: {x: 0.9952131, y: 0.025000721, z: 0.0103877485, w: -0.09390361}
+  m_ParentAnchorRotation: {x: 0.9952131, y: 0.025000678, z: 0.010387745, w: -0.09390361}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
-  m_AnchorRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_AnchorRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_ComputeParentAnchor: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
@@ -1434,7 +1417,7 @@ ArticulationBody:
     lowerLimit: -40
     upperLimit: 40
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1442,7 +1425,7 @@ ArticulationBody:
     lowerLimit: -20
     upperLimit: 140
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1450,7 +1433,7 @@ ArticulationBody:
     lowerLimit: -40
     upperLimit: 40
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1471,22 +1454,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 8384951864772076047}
   limbType: 4096
   jointType: 2048
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: -1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: -1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 8384951864772076047}
 --- !u!1 &53891287582989125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,7 +1833,7 @@ ArticulationBody:
   m_GameObject: {fileID: 53891287582989145}
   m_Enabled: 1
   m_Mass: 5.625
-  m_ParentAnchorPosition: {x: -0.46865484, y: 0.0034997982, z: -0.008373111}
+  m_ParentAnchorPosition: {x: -0.46786717, y: 0.000000025262125, z: 0.0000000018626454}
   m_ParentAnchorRotation: {x: 0.020251159, y: 0.9975418, z: -0.06515384, w: -0.015977724}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -1870,7 +1849,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1878,7 +1857,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 120
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1886,7 +1865,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1907,22 +1886,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 8102738117769784303}
   limbType: 1024
   jointType: 512
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 8102738117769784303}
 --- !u!1 &53891287582989147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,7 +1955,7 @@ ArticulationBody:
   m_GameObject: {fileID: 53891287582989147}
   m_Enabled: 1
   m_Mass: 5.625
-  m_ParentAnchorPosition: {x: -0.4566998, y: -0.0021731644, z: -0.010726883}
+  m_ParentAnchorPosition: {x: -0.467867, y: 0.000000026193447, z: -0.0000000037252907}
   m_ParentAnchorRotation: {x: -0.02025101, y: 0.9975425, z: 0.06514399, w: -0.015977908}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -1996,7 +1971,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2004,7 +1979,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 120
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2012,7 +1987,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2033,22 +2008,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 3218588745524223083}
   limbType: 8192
   jointType: 4096
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 3218588745524223083}
 --- !u!1 &53891287582989149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,23 +2139,23 @@ ArticulationBody:
   m_GameObject: {fileID: 53891287582989153}
   m_Enabled: 1
   m_Mass: 3.75
-  m_ParentAnchorPosition: {x: -0.22455403, y: 0.0522871, z: -0.036664717}
-  m_ParentAnchorRotation: {x: 0.0036125518, y: 0.0088259205, z: -0.22158995, w: 0.97509354}
+  m_ParentAnchorPosition: {x: -0.25348923, y: 0.000000007450581, z: -0.00000014714898}
+  m_ParentAnchorRotation: {x: 0.22158995, y: 0.97509354, z: 0.0036125616, w: -0.008825963}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
-  m_AnchorRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_AnchorRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_ComputeParentAnchor: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
   m_LinearY: 2
   m_LinearZ: 2
-  m_SwingY: 1
+  m_SwingY: 0
   m_SwingZ: 1
-  m_Twist: 1
+  m_Twist: 0
   m_XDrive:
     lowerLimit: -130
     upperLimit: 130
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2192,15 +2163,15 @@ ArticulationBody:
     lowerLimit: -110
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_ZDrive:
-    lowerLimit: -100
-    upperLimit: 0
+    lowerLimit: 0
+    upperLimit: 145
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2221,22 +2192,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 2190347704926700410}
   limbType: 16
   jointType: 8
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: 1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 2190347704926700410}
 --- !u!1 &53891287582989155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,22 +2262,22 @@ ArticulationBody:
   m_Enabled: 1
   m_Mass: 3.75
   m_ParentAnchorPosition: {x: -0.25348923, y: 0.000000029802322, z: -0.0000000614673}
-  m_ParentAnchorRotation: {x: -0.003612548, y: 0.008825891, z: 0.22158994, w: 0.9750935}
+  m_ParentAnchorRotation: {x: 0.008825891, y: 0.0036125476, z: 0.9750935, w: -0.22158998}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
-  m_AnchorRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_AnchorRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_ComputeParentAnchor: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
   m_LinearY: 2
   m_LinearZ: 2
-  m_SwingY: 1
+  m_SwingY: 0
   m_SwingZ: 1
-  m_Twist: 1
+  m_Twist: 0
   m_XDrive:
     lowerLimit: -130
     upperLimit: 130
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2318,15 +2285,15 @@ ArticulationBody:
     lowerLimit: -130
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_ZDrive:
-    lowerLimit: -100
-    upperLimit: 0
+    lowerLimit: 0
+    upperLimit: 145
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2347,22 +2314,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 1639896070456566361}
   limbType: 128
   jointType: 64
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: -1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: 1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 1639896070456566361}
 --- !u!1 &53891287582989157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2573,28 +2536,28 @@ ArticulationBody:
   m_LinearZ: 2
   m_SwingY: 1
   m_SwingZ: 1
-  m_Twist: 0
+  m_Twist: 1
   m_XDrive:
-    lowerLimit: 0
-    upperLimit: 0
+    lowerLimit: -90
+    upperLimit: 90
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_YDrive:
-    lowerLimit: -20
-    upperLimit: 40
+    lowerLimit: -25
+    upperLimit: 55
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_ZDrive:
-    lowerLimit: -30
-    upperLimit: 30
+    lowerLimit: -90
+    upperLimit: 70
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2615,22 +2578,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 1759647349947568621}
   limbType: 32
   jointType: 16
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 1759647349947568621}
 --- !u!1 &53891287582989167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,28 +2674,28 @@ ArticulationBody:
   m_LinearZ: 2
   m_SwingY: 1
   m_SwingZ: 1
-  m_Twist: 0
+  m_Twist: 1
   m_XDrive:
-    lowerLimit: 0
-    upperLimit: 0
+    lowerLimit: -90
+    upperLimit: 90
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_YDrive:
-    lowerLimit: -20
-    upperLimit: 40
+    lowerLimit: -25
+    upperLimit: 55
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_ZDrive:
-    lowerLimit: -40
-    upperLimit: 40
+    lowerLimit: -90
+    upperLimit: 70
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2757,22 +2716,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 3030030898842251692}
   limbType: 256
   jointType: 128
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 3030030898842251692}
 --- !u!1 &53891287582989169
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,7 +3149,7 @@ ArticulationBody:
   m_GameObject: {fileID: 53891287582989245}
   m_Enabled: 1
   m_Mass: 3.75
-  m_ParentAnchorPosition: {x: -0.266267, y: -0.15592733, z: -0.022573574}
+  m_ParentAnchorPosition: {x: -0.25794613, y: -0.16481084, z: -0.025283672}
   m_ParentAnchorRotation: {x: -0.58297455, y: 0.40055466, z: 0.47049734, w: -0.527569}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -3207,26 +3162,26 @@ ArticulationBody:
   m_SwingZ: 1
   m_Twist: 1
   m_XDrive:
-    lowerLimit: -30
-    upperLimit: 45
+    lowerLimit: -90
+    upperLimit: 90
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_YDrive:
-    lowerLimit: -120
-    upperLimit: 90
+    lowerLimit: -33
+    upperLimit: 75
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_ZDrive:
-    lowerLimit: -70
-    upperLimit: 70
+    lowerLimit: -50
+    upperLimit: 135
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3247,22 +3202,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 7813070982208803313}
   limbType: 8
   jointType: 4
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 7813070982208803313}
 --- !u!1 &53891287582989247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,7 +3271,7 @@ ArticulationBody:
   m_GameObject: {fileID: 53891287582989247}
   m_Enabled: 1
   m_Mass: 3.75
-  m_ParentAnchorPosition: {x: -0.18653531, y: 0.20024112, z: -0.02004077}
+  m_ParentAnchorPosition: {x: -0.25794613, y: 0.16481087, z: -0.025283666}
   m_ParentAnchorRotation: {x: 0.58297443, y: 0.4005547, z: -0.47049722, w: -0.52756906}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -3333,26 +3284,26 @@ ArticulationBody:
   m_SwingZ: 1
   m_Twist: 1
   m_XDrive:
-    lowerLimit: -30
-    upperLimit: 45
+    lowerLimit: -90
+    upperLimit: 90
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_YDrive:
-    lowerLimit: -120
-    upperLimit: 90
+    lowerLimit: -33
+    upperLimit: 75
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
   m_ZDrive:
-    lowerLimit: -70
-    upperLimit: 70
+    lowerLimit: -135
+    upperLimit: 50
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3373,22 +3324,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 5328967530244094428}
   limbType: 64
   jointType: 32
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 5328967530244094428}
 --- !u!1 &795465697214294118
 GameObject:
   m_ObjectHideFlags: 0
@@ -3445,7 +3392,7 @@ ArticulationBody:
   m_GameObject: {fileID: 795465697214294118}
   m_Enabled: 1
   m_Mass: 3
-  m_ParentAnchorPosition: {x: -0.40075514, y: 0.0038914406, z: -0.0060988017}
+  m_ParentAnchorPosition: {x: -0.46400052, y: -0.020000024, z: 0.06900001}
   m_ParentAnchorRotation: {x: 0.010292054, y: 0.9993669, z: -0.030530429, w: 0.015092588}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -3461,7 +3408,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3469,7 +3416,7 @@ ArticulationBody:
     lowerLimit: -30
     upperLimit: 30
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3477,7 +3424,7 @@ ArticulationBody:
     lowerLimit: -20
     upperLimit: 20
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3498,22 +3445,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 6547864911903722542}
   limbType: 2048
   jointType: 1024
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0.055
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 6547864911903722542}
 --- !u!1 &1856606787304261054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,7 +3529,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3594,7 +3537,7 @@ ArticulationBody:
     lowerLimit: -30
     upperLimit: 30
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3602,7 +3545,7 @@ ArticulationBody:
     lowerLimit: -20
     upperLimit: 20
     stiffness: 1000
-    damping: 0
+    damping: 100
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3623,22 +3566,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3bbabf197c1b14482d54340670627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulation: {fileID: 2162228978060769957}
   limbType: 16384
   jointType: 8192
-  control: 0
-  stiffness: 1000
-  damping: 1000
-  maxEffect: 1000
+  siffness: 1000
+  damping: 100
+  useAxis: 1
+  primaryAxis: {x: -1, y: 0, z: 0}
+  secondaryAxis: {x: 0, y: 1, z: 0}
   dof: 0
-  dofCount: 0
   inputX: 0
   inputY: 0
   inputZ: 0
-  primaryAxis: {x: -1, y: 0, z: 0}
-  secondaryAxis: {x: 0, y: 1, z: 0}
-  currentTorque: 0
-  useAxis: 1
+  articulation: {fileID: 2162228978060769957}
 --- !u!114 &155002547305570769
 MonoBehaviour:
   m_ObjectHideFlags: 0

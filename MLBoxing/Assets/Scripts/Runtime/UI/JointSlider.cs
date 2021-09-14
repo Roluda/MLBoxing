@@ -40,9 +40,9 @@ namespace MLBoxing.UI {
                 sliderY.value = observedArticulation.inputY;
                 sliderZ.value = observedArticulation.inputZ;
             } else {
-                observedArticulation.inputX = sliderX.value;
-                observedArticulation.inputY = sliderY.value;
-                observedArticulation.inputZ = sliderZ.value;
+                observedArticulation.SetInputX(sliderX.value);
+                observedArticulation.SetInputY(sliderY.value);
+                observedArticulation.SetInputZ(sliderZ.value);
             }
         }
     }

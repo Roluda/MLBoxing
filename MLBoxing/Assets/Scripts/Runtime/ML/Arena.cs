@@ -20,23 +20,14 @@ namespace MLBoxing.ML {
         List<Transform> occupiedSpawnPoints = new List<Transform>();
 
         void OnEnable() {
-            Academy.Instance.OnEnvironmentReset += ResetArena;
-        }
-
-        void OnDisable() {
-            Academy.Instance.OnEnvironmentReset -= ResetArena;
+            Academy.Instance.OnEnvironmentReset += EndEpisode;
         }
 
         private void FixedUpdate() {
             UpdateEpisodeTime();
         }
 
-        public void SetLesson(Lesson lesson) {
-            this.lesson = lesson;
-            ResetArena();
-        }
-
-        public void UpdateEpisodeTime() {
+        void UpdateEpisodeTime() {
             if(lesson.episodeLength > 0) {
                 steps++;
                 if (steps >= lesson.episodeLength) {
@@ -45,41 +36,25 @@ namespace MLBoxing.ML {
             }
         }
 
-        private void EndEpisode() {
-            if (lesson.selfPlay) {
-                DetermineWinner();
+        public void StartLesson(Lesson lesson) {
+            if (this.lesson) {
+                UnregisterRewards();
+                UnregisterTerminators();
+                currentAgents.ForEach(agent => agent.EpisodeInterrupted());
+                currentAgents.ForEach(agent => Destroy(agent.gameObject));
+                currentAgents.Clear();
             }
-            ResetArena();
-        }
-
-        private void DetermineWinner() {
-            if (currentAgents[0].score > currentAgents[1].score) {
-                currentAgents[0].Win();
-                currentAgents[1].Lose();
-            }else if (currentAgents[0].score < currentAgents[1].score) {
-                currentAgents[1].Win();
-                currentAgents[0].Lose();
-            }
-        }
-
-        private void ResetArena() {
-            KillCurrentAgents();
-            SpawnNewAgents();
+            this.lesson = lesson;
+            SpawnAgents();
             RegisterRewards();
-            RegisterTerminaters();
+            RegisterTerminators();
             steps = 0;
         }
-
-        void KillCurrentAgents() {
-            currentAgents.ForEach(agent => agent.Kill());
-            currentAgents.Clear();
-        }
-
-        void SpawnNewAgents() {
+        void SpawnAgents() {
             Assert.IsFalse(lesson.student.enabled, "Agent has to be disabled on Initialize to prevent OnEnable");
             occupiedSpawnPoints.Clear();
             var nextSpawn = NextRandomSpawn();
-            var firstAgent = Instantiate(lesson.student, nextSpawn.position , nextSpawn.rotation, transform);
+            var firstAgent = Instantiate(lesson.student, nextSpawn.position, nextSpawn.rotation, transform);
             firstAgent.onTerminated += (agent) => EndEpisode();
             currentAgents.Add(firstAgent);
             if (lesson.mirrorOpponent || lesson.selfPlay) {
@@ -98,12 +73,41 @@ namespace MLBoxing.ML {
             firstAgent.enabled = true;
         }
 
+        private void EndEpisode() {
+            if (lesson.selfPlay) {
+                DetermineWinner();
+            }
+            currentAgents.ForEach(agent => agent.EndEpisode());
+            steps = 0;
+        }
+
+        private void DetermineWinner() {
+            if (currentAgents.Count < 2) {
+                return;
+            }
+            if (currentAgents[0].score > currentAgents[1].score) {
+                currentAgents[0].Win();
+                currentAgents[1].Lose();
+            }else if (currentAgents[0].score < currentAgents[1].score) {
+                currentAgents[1].Win();
+                currentAgents[0].Lose();
+            }
+        }
+
         private void RegisterRewards() {
             currentAgents.ForEach(agent => lesson.rewards.ForEach(reward => reward.AddRewardListeners(agent)));
         }
 
-        private void RegisterTerminaters() {
+        private void UnregisterRewards() {
+            currentAgents.ForEach(agent => lesson.rewards.ForEach(reward => reward.RemoveRewardListeners(agent)));
+        }
+
+        private void RegisterTerminators() {
             currentAgents.ForEach(agent => lesson.terminaters.ForEach(terminater => terminater.AddTerminationListeners(agent)));
+        }
+
+        private void UnregisterTerminators() {
+            currentAgents.ForEach(agent => lesson.terminaters.ForEach(terminater => terminater.RemoveTerminationListeners(agent)));
         }
 
         Transform NextRandomSpawn() {
@@ -112,7 +116,6 @@ namespace MLBoxing.ML {
             occupiedSpawnPoints.Add(randomSpawn);
             return randomSpawn;
         }
-
 
         private void OnTriggerExit(Collider other) {
             var agent = other.GetComponentInParent<ModularAgent>();

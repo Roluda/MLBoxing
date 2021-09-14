@@ -19,11 +19,11 @@ namespace MLBoxing.Ragdoll {
         Hurtbox[] hurtboxes = default;
         [SerializeField]
         Hitbox[] hitboxes = default;
+        [SerializeField]
+        int solverIterations = 20;
 
-        [SerializeField]
-        bool applyControlTypeToAllJoints = true;
-        [SerializeField]
-        ControlType controlType = ControlType.PositionControl;
+        public float totalDamageTaken;
+        public float totalDamageDealt;
 
         public Vector3 rootPosition => root.worldCenterOfMass;
 
@@ -44,18 +44,19 @@ namespace MLBoxing.Ragdoll {
             return FilterJoints(type).First();
         }
 
-        public float totalDamageTaken;
-        public float totalDamageDealt;
+        public void Reset() {
+            foreach(var arti in articulations) {
+                arti.ResetArticulation();
+            }
+            totalDamageTaken = 0;
+            totalDamageDealt = 0;
+        }
 
         private void OnValidate() {
             articulations = GetComponentsInChildren<ArticulationController>();
             hurtboxes = GetComponentsInChildren<Hurtbox>();
             hitboxes = GetComponentsInChildren<Hitbox>();
-            if (applyControlTypeToAllJoints) {
-                foreach( var joint in allArticulations) {
-                    joint.EnterControlMode(controlType);
-                }
-            }
+            root.solverIterations = solverIterations;
         }
 
         private void Awake() {

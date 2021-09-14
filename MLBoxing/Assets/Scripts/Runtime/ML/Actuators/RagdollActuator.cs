@@ -18,13 +18,13 @@ namespace MLBoxing.ML.Actuators {
             int index = 0;
             foreach(var joint in actuatedRagdoll.FilterJoints(actuatedJoints)) {
                 if (joint.dof.HasFlag(DOF.X)) {
-                    joint.inputX = actionBuffers.ContinuousActions[index++];
+                    joint.SetInputX(actionBuffers.ContinuousActions[index++]);
                 }
                 if (joint.dof.HasFlag(DOF.Y)) {
-                    joint.inputY = actionBuffers.ContinuousActions[index++];
+                    joint.SetInputY(actionBuffers.ContinuousActions[index++]);
                 }
                 if (joint.dof.HasFlag(DOF.Z)) {
-                    joint.inputZ = actionBuffers.ContinuousActions[index++];
+                    joint.SetInputZ(actionBuffers.ContinuousActions[index++]);
                 }
             }
         }

@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: R_EnergyUse_Torque_Selfplay_Small
   m_EditorClassIdentifier: 
   asScore: 0
-  angularEnergyScale: 0
-  linearEnergyScale: 0
-  torqueScale: -0.000004
-  opponentAngularEnergyScale: 0
-  opponentLinearEnergyScale: 0
-  enemyTorqueScale: 0.000004
-  relevantLimbs: -1
+  torqueScale: 0
+  enemyTorqueScale: 0
+  deltaTorqueScale: -0.001
+  enemyDeltaTorqueScale: -0.001
   relevantJoints: -1

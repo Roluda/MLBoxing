@@ -40,7 +40,6 @@ namespace MLBoxing.ML.Sensors {
                 return Vector3.zero;
             }
             return ragdoll.allArticulations.Aggregate(Vector3.zero, (s, v) => s + v.mass * v.position) / ragdoll.allArticulations.Sum(rigid => rigid.mass);
-            //return ragdoll.root.worldCenterOfMass;
         }
 
         //Inherited

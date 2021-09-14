@@ -29,11 +29,21 @@ namespace MLBoxing.ML {
         public float score { get; private set; }
         public int team { get => behaviorParameters.TeamId; set => behaviorParameters.TeamId = value; }
 
-        bool dead = false;
-
-
         Dictionary<string, float> rewardSources = new Dictionary<string, float>();
         Dictionary<string, float> scoreSources = new Dictionary<string, float>();
+
+        private void Awake() {
+            foreach (var hitbox in ragdoll.allHitboxes) {
+                hitbox.onHit += DealDamage;
+            }
+            foreach (var hurtbox in ragdoll.allHurtboxes) {
+                hurtbox.onHurt += TakeDamage;
+            }
+        }
+
+        void FixedUpdate() {
+            onFixedUpdate?.Invoke(this);
+        }
 
         public void SetOpponent(ModularAgent agent) {
             opponent = agent;
@@ -53,11 +63,13 @@ namespace MLBoxing.ML {
             }
             rewardSources.Clear();
             scoreSources.Clear();
-            if (dead) {
-                Destroy(gameObject);
-            }
+            ragdoll.Reset();
+            score = 0;
         }
 
+        public void Terminate() {
+            onTerminated?.Invoke(this);
+        }
 
         public void AddReward(float reward, string source, bool asScore = false) {
             if (asScore) {
@@ -89,45 +101,12 @@ namespace MLBoxing.ML {
             onLose?.Invoke(this);
         }
 
-        /// <summary>
-        /// Kills the agent
-        /// </summary>
-        public void Kill() {
-            if (dead) {
-                return;
-            }
-            dead = true;
-            EndEpisode();
-            score = 0;
-        }
-
-        /// <summary>
-        /// Terminte calls onTerminate and Kills the agent after
-        /// </summary
-        public void Terminate() {
-            onTerminated?.Invoke(this);
-            Kill();
-        }
-
         void DealDamage(float damage) {
             onDealDamage?.Invoke(this, damage);
         }
 
         void TakeDamage(float damage) {
             onTakeDamage?.Invoke(this, damage);
-        }
-
-        private void Awake() {
-            foreach(var hitbox in ragdoll.allHitboxes) {
-                hitbox.onHit += DealDamage;
-            }
-            foreach(var hurtbox in ragdoll.allHurtboxes) {
-                hurtbox.onHurt += TakeDamage;
-            }
-        }
-
-        void FixedUpdate() {
-            onFixedUpdate?.Invoke(this);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace MLBoxing.ML.Rewards {
                 agent.AddReward(torque * deltaTorqueScale, nameof(deltaTorqueScale), asScore);
             }
             if (enemyDeltaTorqueScale != 0) {
-                float torque = agent.ragdoll.FilterJoints(relevantJoints).Sum(joint => Mathf.Pow(joint.deltaTorque, 2));
+                float torque = agent.opponent.ragdoll.FilterJoints(relevantJoints).Sum(joint => Mathf.Pow(joint.deltaTorque, 2));
                 agent.AddReward(torque * enemyDeltaTorqueScale, nameof(enemyDeltaTorqueScale), asScore);
             }
         }
