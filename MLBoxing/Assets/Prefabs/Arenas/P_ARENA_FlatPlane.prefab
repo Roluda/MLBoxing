@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4506786857346838568}
-  m_Layer: 0
+  - component: {fileID: 7372400968695135959}
+  m_Layer: 6
   m_Name: Spawn A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,12 +25,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4506786857346838569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4506786858170228649}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7372400968695135959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506786857346838569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8035936fae1f44089b97dbddd21d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRadius: 2
+  randomAngle: 90
 --- !u!1 &4506786857709724538
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,7 +54,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4506786857709724537}
-  m_Layer: 0
+  - component: {fileID: 4877444891698368050}
+  m_Layer: 6
   m_Name: Spawn B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,12 +70,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4506786857709724538}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4506786858170228649}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &4877444891698368050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506786857709724538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8035936fae1f44089b97dbddd21d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRadius: 2
+  randomAngle: 90
 --- !u!1 &4506786857808917720
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +102,7 @@ GameObject:
   - component: {fileID: 4506786857808917717}
   - component: {fileID: 4506786857808917718}
   - component: {fileID: 4506786857808917719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 4506786857808917720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 4506786858170228649}
   m_RootOrder: 0
@@ -167,7 +197,7 @@ GameObject:
   - component: {fileID: 4506786858170228649}
   - component: {fileID: 4506786858170228650}
   - component: {fileID: 160520079714403887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: P_ARENA_FlatPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,8 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lesson: {fileID: 11400000, guid: 6ebbec9bddb089541a0c9f9f85facc11, type: 2}
   possibleSpawnPoints:
-  - {fileID: 4506786857346838568}
-  - {fileID: 4506786857709724537}
+  - {fileID: 7372400968695135959}
+  - {fileID: 4877444891698368050}
 --- !u!65 &160520079714403887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -218,5 +248,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 5, z: 10}
+  m_Size: {x: 12, y: 5, z: 12}
   m_Center: {x: 0, y: 0, z: 0}

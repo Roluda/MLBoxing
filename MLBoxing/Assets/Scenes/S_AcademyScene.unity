@@ -2429,10 +2429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5b908932b9fc34391f959447da4d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 15, y: 15}
+  gridSize: {x: 20, y: 20}
   gridSpace: 15
   arenas:
-  - {fileID: 4506786858170228650, guid: 1c65f89ef351a744a80176b711ad2edc, type: 3}
+  - {fileID: 4506786858170228650, guid: 9f6dc6dcdf1b7df4998c7b2a016742e6, type: 3}
   lessonParameter: lesson
   lessons:
   - {fileID: 11400000, guid: a717c657bbd7e7a4190b0aabcc9382d6, type: 2}
@@ -3092,6 +3092,9 @@ MonoBehaviour:
   observedRagdoll: {fileID: 968529624}
   manipulatedJoints: -1
   mode: 0
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 55
   spawnContext: {fileID: 1479118282}
   sliderPrefab: {fileID: 8872434501965093644, guid: d196d3e4a9650a94f88bb54b3d42727c, type: 3}
 --- !u!4 &2085624284

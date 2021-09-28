@@ -27,6 +27,12 @@ namespace MLBoxing.Ragdoll {
 
         public Vector3 rootPosition => root.worldCenterOfMass;
 
+        public Vector3 deltaPosition => currentPosition - lastPosition;
+        Vector3 currentPosition = Vector3.zero;
+        Vector3 lastPosition = Vector3.zero;
+        Vector3 rootInitialPosition;
+        Quaternion rootInitialRotation;
+
         public IEnumerable<ArticulationController> allArticulations => articulations.AsEnumerable();
         public IEnumerable<Hitbox> allHitboxes => hitboxes.AsEnumerable();
         public IEnumerable<Hurtbox> allHurtboxes => hurtboxes.AsEnumerable();
@@ -44,10 +50,13 @@ namespace MLBoxing.Ragdoll {
             return FilterJoints(type).First();
         }
 
-        public void Reset() {
-            foreach(var arti in articulations) {
+        public void ResetModell(Vector3 position, Quaternion rotation) {
+            root.Sleep();
+            root.TeleportRoot(position+rootInitialPosition, rotation*rootInitialRotation);
+            foreach (var arti in articulations) {
                 arti.ResetArticulation();
             }
+            root.WakeUp();
             totalDamageTaken = 0;
             totalDamageDealt = 0;
         }
@@ -60,7 +69,9 @@ namespace MLBoxing.Ragdoll {
         }
 
         private void Awake() {
-            foreach(var hitbox in allHitboxes) {
+            rootInitialPosition = root.transform.localPosition;
+            rootInitialRotation = root.transform.localRotation;
+            foreach (var hitbox in allHitboxes) {
                 hitbox.onHit += (damage) => totalDamageDealt += damage;
             }
             foreach(var hurtbox in allHurtboxes) {
@@ -68,6 +79,11 @@ namespace MLBoxing.Ragdoll {
             }
             height = (GetLimb(LimbType.Head).position - GetLimb(LimbType.LeftFoot).position).magnitude;
             span = (GetLimb(LimbType.LeftPalm).position - GetLimb(LimbType.RightPalm).position).magnitude;
+        }
+
+        private void FixedUpdate() {
+            lastPosition = currentPosition;
+            currentPosition = rootPosition;
         }
     }
 }

@@ -46,8 +46,6 @@ namespace MLBoxing.Ragdoll {
         ArticulationReducedSpace velocityBackup;
         ArticulationReducedSpace forceBackup;
         ArticulationReducedSpace accelerationBackup;
-        Vector3 backupPosition;
-        Quaternion backupRotation;
         float backupFriction;
 
         private void OnValidate() {
@@ -119,9 +117,6 @@ namespace MLBoxing.Ragdoll {
 
         void RestoreArticulation() {
             articulation.Sleep();
-            if (articulation.isRoot) {
-                articulation.TeleportRoot(backupPosition, backupRotation);
-            }
             articulation.ResetCenterOfMass();
             articulation.ResetInertiaTensor();
             articulation.jointPosition = positionBackup;
@@ -140,8 +135,6 @@ namespace MLBoxing.Ragdoll {
             forceBackup = articulation.jointForce;
             backupFriction = articulation.jointFriction;
             accelerationBackup = articulation.jointAcceleration;
-            backupPosition = transform.position;
-            backupRotation = transform.rotation;
         }
 
 
@@ -183,12 +176,12 @@ namespace MLBoxing.Ragdoll {
         }
 
         private float CalculateCurrentTorque() {
-            var space = articulation.jointForce;
+            var space = articulation.jointAcceleration;
             float sum = 0;
             for (int i = 0; i < space.dofCount; i++) {
                 sum += Mathf.Pow(space[i], 2);
             }
-            return Mathf.Sqrt(sum);
+            return Mathf.Sqrt(sum) / 360;
         }
 
         void CalculateDOF() {

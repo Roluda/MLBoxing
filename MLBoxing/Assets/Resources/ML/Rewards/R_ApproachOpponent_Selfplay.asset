@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b656a784bf6e2ff44a1e716fd5c33917, type: 3}
-  m_Name: R_EnergyUse_Torque_Selfplay_Small
+  m_Script: {fileID: 11500000, guid: 3be20b878b3736746ba4bb59c5edf893, type: 3}
+  m_Name: R_ApproachOpponent_Selfplay
   m_EditorClassIdentifier: 
   asScore: 0
-  torqueScale: 0
-  enemyTorqueScale: 0
-  deltaTorqueScale: -0.002
-  enemyDeltaTorqueScale: 0.002
-  relevantJoints: -1
+  appreachEnemyReward: 0.01
+  enemyApproachesReward: -0.01

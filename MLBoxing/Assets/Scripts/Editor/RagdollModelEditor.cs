@@ -16,7 +16,7 @@ public class RagdollModelEditor : Editor {
         if (Application.isPlaying) {
             if (GUILayout.Button("Reset Articuation")) {
                 var model = (RagdollModel)target;
-                model.Reset();
+                model.ResetModell(model.transform.position, model.transform.rotation);
             }
         }
     }

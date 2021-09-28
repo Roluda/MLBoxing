@@ -32,6 +32,9 @@ namespace MLBoxing.ML {
         Dictionary<string, float> rewardSources = new Dictionary<string, float>();
         Dictionary<string, float> scoreSources = new Dictionary<string, float>();
 
+        [HideInInspector]
+        public SpawnPoint spawnPoint = default;
+
         private void Awake() {
             foreach (var hitbox in ragdoll.allHitboxes) {
                 hitbox.onHit += DealDamage;
@@ -63,9 +66,10 @@ namespace MLBoxing.ML {
             }
             rewardSources.Clear();
             scoreSources.Clear();
-            ragdoll.Reset();
+            ragdoll.ResetModell(spawnPoint.RandomPosition(), spawnPoint.RandomRotation());
             score = 0;
         }
+
 
         public void Terminate() {
             onTerminated?.Invoke(this);

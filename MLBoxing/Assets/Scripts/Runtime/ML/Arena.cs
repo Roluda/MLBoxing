@@ -12,12 +12,11 @@ namespace MLBoxing.ML {
         [SerializeField]
         Lesson lesson = default;
         [SerializeField]
-        public Transform[] possibleSpawnPoints = default;
-
+        public SpawnPoint[] possibleSpawnPoints = default;
 
         int steps = 0;
         List<ModularAgent> currentAgents = new List<ModularAgent>();
-        List<Transform> occupiedSpawnPoints = new List<Transform>();
+        List<SpawnPoint> occupiedSpawnPoints = new List<SpawnPoint>();
 
         void OnEnable() {
             Academy.Instance.OnEnvironmentReset += EndEpisode;
@@ -53,14 +52,14 @@ namespace MLBoxing.ML {
         void SpawnAgents() {
             Assert.IsFalse(lesson.student.enabled, "Agent has to be disabled on Initialize to prevent OnEnable");
             occupiedSpawnPoints.Clear();
-            var nextSpawn = NextRandomSpawn();
-            var firstAgent = Instantiate(lesson.student, nextSpawn.position, nextSpawn.rotation, transform);
+            var firstAgent = Instantiate(lesson.student, transform);
+            firstAgent.spawnPoint = NextRandomSpawn();
             firstAgent.onTerminated += (agent) => EndEpisode();
             currentAgents.Add(firstAgent);
             if (lesson.mirrorOpponent || lesson.selfPlay) {
                 Assert.IsTrue(possibleSpawnPoints.Length > 1, "Not enough Spawn Points for self Play");
-                nextSpawn = NextRandomSpawn();
-                var secondAgent = Instantiate(lesson.student, nextSpawn.position, nextSpawn.rotation, transform);
+                var secondAgent = Instantiate(lesson.student, transform);
+                secondAgent.spawnPoint = NextRandomSpawn();
                 secondAgent.onTerminated += (agent) => EndEpisode();
                 currentAgents.Add(secondAgent);
                 firstAgent.SetOpponent(secondAgent);
@@ -110,7 +109,7 @@ namespace MLBoxing.ML {
             currentAgents.ForEach(agent => lesson.terminaters.ForEach(terminater => terminater.RemoveTerminationListeners(agent)));
         }
 
-        Transform NextRandomSpawn() {
+        SpawnPoint NextRandomSpawn() {
             var availableSpawns = possibleSpawnPoints.Except(occupiedSpawnPoints).ToArray();
             var randomSpawn = availableSpawns[UnityEngine.Random.Range(0, availableSpawns.Length)];
             occupiedSpawnPoints.Add(randomSpawn);

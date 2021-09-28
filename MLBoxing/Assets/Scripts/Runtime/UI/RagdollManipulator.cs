@@ -16,6 +16,8 @@ namespace MLBoxing.UI {
         JointType manipulatedJoints = default;
         [SerializeField]
         Mode mode = Mode.Write;
+        [SerializeField]
+        LayerMask hitLayers = default;
 
         [Header("Monobehaviour Config")]
         [SerializeField]
@@ -63,7 +65,7 @@ namespace MLBoxing.UI {
 
         void CheckMouseInput() {
             if (Input.GetMouseButtonDown(0)) {
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hitInfo)) {
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hitInfo,Mathf.Infinity, hitLayers)) {
                     var controller = hitInfo.collider.GetComponentInParent<RagdollModel>();
                     if (controller) {
                         observedRagdoll = controller;
