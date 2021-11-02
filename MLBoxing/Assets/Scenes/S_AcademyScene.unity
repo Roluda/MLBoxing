@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5b908932b9fc34391f959447da4d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 20, y: 20}
+  gridSize: {x: 1, y: 1}
   gridSpace: 15
   arenas:
   - {fileID: 4506786858170228650, guid: 9f6dc6dcdf1b7df4998c7b2a016742e6, type: 3}

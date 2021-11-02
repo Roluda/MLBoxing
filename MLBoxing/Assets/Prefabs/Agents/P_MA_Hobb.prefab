@@ -139,6 +139,7 @@ MonoBehaviour:
   ragdoll: {fileID: 3933610771221868390}
   opponent: {fileID: 0}
   behaviorParameters: {fileID: 228707360901564606}
+  spawnPoint: {fileID: 0}
 --- !u!114 &228707360901564604
 MonoBehaviour:
   m_ObjectHideFlags: 0
